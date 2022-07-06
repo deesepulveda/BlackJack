@@ -182,9 +182,9 @@ const shuffleNow = () => {
 // Deal Button Function
 
 buttonDeal.addEventListener("click", () => {
-  // cardUIShuffle();
-  shuffleNow();
-  //setTimeout(shuffleNow, 2200);
+  cardUIShuffle();
+  // shuffleNow();
+  setTimeout(shuffleNow, 2200);
 
   // Show Hit Button after Deal Button Pressed
   buttons.forEach((b) => {
