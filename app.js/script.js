@@ -131,7 +131,7 @@ const winningHand = () => {
 const cardUIShuffle = () => {
   for (let i = 0; i < 10; i++) {
     let cardImages = document.createElement("img");
-    cardImages.src = "/./public/images/cardPattern.jpg";
+    cardImages.src = "/public/images/cardPattern.jpg";
     cardImages.classList.add("shuffling-deck-img");
     shuffledContainer.appendChild(cardImages);
     cardImages.style.animationDelay = `.${i}s`;
@@ -163,12 +163,12 @@ const shuffleNow = () => {
 
   // Create Image for Dealer and Player First Cards Flop
   shuffledImg.forEach((s, i) => {
-    s.src = `/./public/images/${shuffledDeck[i]}.png`;
+    s.src = `/public/images/${shuffledDeck[i]}.png`;
     playerSumDeck.push(convertStr(shuffledDeck[i]));
     playerSumCount(convertStr(shuffledDeck[i]));
   });
 
-  dealerShuffledImg.src = `/./public/images/${shuffledDeck[5]}.png`;
+  dealerShuffledImg.src = `/public/images/${shuffledDeck[5]}.png`;
   dealerSumDeck.push(convertStr(shuffledDeck[5]));
   dealerSumCount(convertStr(shuffledDeck[5]));
 
@@ -206,7 +206,7 @@ let i = 2;
 buttonHit.addEventListener("click", () => {
   let newImages = document.createElement("img");
   newImages.classList.add("shuffled-img");
-  newImages.src = `/./public/images/${shuffledDeck[i]}.png`;
+  newImages.src = `/public/images/${shuffledDeck[i]}.png`;
   flopPlayerContainer.appendChild(newImages);
   playerSumDeck.push(convertStr(shuffledDeck[i]));
   playerSumCount(convertStr(shuffledDeck[i]));
@@ -234,7 +234,7 @@ buttonStay.addEventListener("click", () => {
   // Dealer Flops Cards
   let newImages = document.createElement("img");
   newImages.classList.add("dealer-shuffled-img");
-  newImages.src = `/./public/images/${shuffledDeck[n]}.png`;
+  newImages.src = `/public/images/${shuffledDeck[n]}.png`;
   flopDealerContainer.appendChild(newImages);
   dealerSumDeck.push(convertStr(shuffledDeck[n]));
   dealerSumCount(convertStr(shuffledDeck[n]));
