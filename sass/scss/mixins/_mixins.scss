@@ -1,0 +1,147 @@
+//-------POSITION/CENTERING MIXINS---------
+@mixin absol-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+@mixin absol-topLeftZero {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flex-start-col {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@mixin flex-spaceEvenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@mixin sticky-position {
+  position: sticky;
+  position: -webkit-sticky;
+}
+
+@mixin transformX {
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+@mixin transformY {
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+//-------WIDTH/HEIGHT MIXINS----------
+
+@mixin keep-it-hundo {
+  width: 100%;
+  height: 100%;
+}
+
+//----------SHADOW MIXINS-----------
+
+@mixin shadow {
+  box-shadow: 0.2rem 0.2rem 0.4rem $color-dark;
+}
+
+@mixin deep-shadow {
+  box-shadow: 0 0.7rem 5rem $color-dark;
+}
+
+@mixin deep-shadow-gray {
+  box-shadow: 0.3rem 0.3rem 2rem $color-gray-lite;
+}
+
+@mixin deep-shadow-graylite {
+  box-shadow: 0rem 0.2rem 0.5rem $color-gray-lite;
+}
+
+@mixin text-shadow {
+  text-shadow: 0.2rem 0.2rem 0.3rem $color-dark;
+}
+
+@mixin text-shadowdeep {
+  text-shadow: 0.3rem 0.3rem 0.7rem $color-dark;
+}
+
+@mixin text-shadowgray {
+  text-shadow: 0.2rem 0.2rem 0.3rem $color-gray-lite;
+}
+
+@mixin text-shadowgray-lite {
+  text-shadow: 0.1rem 0.1rem 0.3rem $color-gray-lite;
+}
+
+//--------TRANSITION MIXINS---------
+
+@mixin transit2 {
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+}
+
+@mixin transit3 {
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+}
+
+@mixin transit4 {
+  transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -ms-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+}
+
+@mixin transit6 {
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+  -moz-transition: 0.6s ease;
+  -ms-transition: 0.6s ease;
+  -o-transition: 0.6s ease;
+}
+
+@mixin transitDelay {
+  transition: 0.8s ease;
+  -webkit-transition: 0.8s ease;
+  -moz-transition: 0.8s ease;
+  -ms-transition: 0.8s ease;
+  -o-transition: 0.8s ease;
+}

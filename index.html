@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BlackJack Table Game</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script defer src="./app.js/script.js"></script>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="table">
+        <div class="dealer-cards">
+          <h2>Dealer</h2>
+          <h3 class="dealer-value"></h3>
+          <div class="flop flop-dealer">
+            <img
+              class="closed-shuffled-img"
+              src="./public/images/cardPattern.jpg"
+              alt=""
+            />
+            <img src="" alt="" class="dealer-shuffled-img" />
+          </div>
+        </div>
+        <div class="player-cards">
+          <h2>Player</h2>
+          <h3 class="player-value"></h3>
+          <div class="flop flop-player">
+            <img src="" alt="" class="shuffled-img" />
+            <img src="" alt="" class="shuffled-img" />
+          </div>
+        </div>
+      </div>
+      <div class="shuffle-area">
+        <div class="shuffled-deck">
+          <img
+            class="shuffling-deck-img"
+            src="./public/images/cardPattern.jpg"
+            alt=""
+          />
+        </div>
+        <div class="buttons-container">
+          <button class="deal-btn">Deal</button>
+          <button class="hit-btn hidden">Hit</button>
+          <button class="stay-btn hidden">Stay</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
