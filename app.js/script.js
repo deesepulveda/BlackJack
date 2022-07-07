@@ -102,7 +102,7 @@ const dealerSumCount = (num) => {
 
 //Check to see if Dealer or Player Wins
 
-const winningHand = () => {
+const evaluateHands = () => {
   modal.classList.add("showModal");
 
   if (
@@ -110,6 +110,10 @@ const winningHand = () => {
     playerValue.textContent < "22"
   ) {
     modalScore.textContent = "Player Wins!!";
+  }
+
+  if (dealerValue.textContent >= 22 && playerValue.textContent < 22) {
+    modalScore.textContent = "Dealer Bust...Player Wins!";
   }
 
   // if (playerValue.textContent === "21") {
@@ -133,9 +137,18 @@ const winningHand = () => {
 };
 
 // ************************************************** //
-// Automatic Modal
-// When Player Hits BlackJack on Flop
-// when Player Busts
+
+// Player Flops BlackJack
+const blackJackPlayer = (val) => {
+  if (val === 21 || val >= 22) {
+    buttonHit.classList.add("hidden");
+    buttonStay.classList.add("hidden");
+    dealerMustFlop();
+    setTimeout(dealerFlopAgain, 1000);
+
+    setTimeout(evaluateHands, 2000);
+  }
+};
 
 // ************************************************** //
 
@@ -215,6 +228,9 @@ buttonDeal.addEventListener("click", () => {
 
   // Hide Deal Button after First Press
   buttonDeal.classList.add("hidden");
+
+  blackJackPlayer(playerValue.textContent);
+  console.log(playerValue.textContent);
 });
 
 // ************************************************** //
@@ -236,6 +252,8 @@ buttonHit.addEventListener("click", () => {
 
   console.log(playerSumDeck);
 
+  blackJackPlayer(playerValue.textContent);
+
   // Hide Hit Button if Player Hits All Five Cards
 
   if (i == 5) {
@@ -249,22 +267,6 @@ buttonHit.addEventListener("click", () => {
 let n = 6;
 
 const dealerMustFlop = () => {
-  if (dealerValue.textContent <= 16) {
-    let newImages = document.createElement("img");
-    newImages.classList.add("dealer-shuffled-img");
-    newImages.src = `./public/images/${shuffledDeck[n]}.png`;
-    flopDealerContainer.appendChild(newImages);
-    dealerSumDeck.push(convertStr(shuffledDeck[n]));
-    dealerSumCount(convertStr(shuffledDeck[n]));
-    n++;
-  }
-};
-
-buttonStay.addEventListener("click", () => {
-  buttonHit.classList.add("hidden");
-  buttonStay.classList.add("hidden");
-  closedShuffleImg.classList.add("hidden");
-
   // Dealer Flops Cards
   let newImages = document.createElement("img");
   newImages.classList.add("dealer-shuffled-img");
@@ -273,9 +275,23 @@ buttonStay.addEventListener("click", () => {
   dealerSumDeck.push(convertStr(shuffledDeck[n]));
   dealerSumCount(convertStr(shuffledDeck[n]));
   n++;
+};
 
-  setTimeout(winningHand, 2000);
-  setTimeout(dealerMustFlop, 1000);
+const dealerFlopAgain = () => {
+  if (dealerValue.textContent <= 17) {
+    dealerMustFlop();
+  }
+};
+
+buttonStay.addEventListener("click", () => {
+  buttonHit.classList.add("hidden");
+  buttonStay.classList.add("hidden");
+  closedShuffleImg.classList.add("hidden");
+  dealerMustFlop();
+
+  setTimeout(dealerFlopAgain, 1000);
+
+  setTimeout(evaluateHands, 2000);
 });
 
 // Modal Button to Refresh/New Game
