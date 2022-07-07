@@ -13,6 +13,9 @@ const buttonHit = document.querySelector(".hit-btn");
 const buttonStay = document.querySelector(".stay-btn");
 const playerValue = document.querySelector(".player-value");
 const dealerValue = document.querySelector(".dealer-value");
+const modal = document.querySelector(".modal");
+const modalScore = document.querySelector(".modal-score");
+const buttonRefresh = document.querySelector(".button-refresh");
 
 // Cards Suit and Rank Arrays
 const suit = ["C", "H", "S", "D"];
@@ -100,27 +103,36 @@ const dealerSumCount = (num) => {
 //Check to see if Dealer or Player Wins
 
 const winningHand = () => {
+  modal.classList.add("showModal");
   if (playerValue.textContent === "21" || dealerValue.textContent === "21") {
-    console.log("BlackJack");
+    //console.log("BlackJack");
+    modalScore.textContent = "BlackJack!";
   }
 
   if (
     playerValue.textContent > dealerValue.textContent &&
     playerValue.textContent < "22"
   ) {
-    console.log("Player Wins!");
+    //console.log("Player Wins!");
+    modalScore.textContent = "Player Wins!!";
   }
 
   if (
-    (dealerValue.textContent > playerValue.textContent &&
-      dealerValue.textContent < "22") ||
-    playerValue.textContent >= "22"
+    dealerValue.textContent > playerValue.textContent &&
+    dealerValue.textContent < "22"
   ) {
-    console.log("Dealer Wins!");
+    //console.log("Dealer Wins!");
+    modalScore.textContent = "Dealer Wins!!";
+  }
+
+  if (playerValue.textContent >= "22") {
+    //console.log("Dealer Wins!");
+    modalScore.textContent = "Player Bust!!";
   }
 
   if (dealerValue.textContent == playerValue.textContent) {
-    console.log("Push");
+    //console.log("Push");
+    modalScore.textContent = "Push!";
   }
 };
 
@@ -241,6 +253,11 @@ buttonStay.addEventListener("click", () => {
   n++;
 
   winningHand();
+});
+
+buttonRefresh.addEventListener("click", () => {
+  modal.classList.remove("showModal");
+  window.location.reload();
 });
 
 // ************************************************** //

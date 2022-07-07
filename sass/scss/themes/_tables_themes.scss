@@ -98,6 +98,38 @@
       }
     }
   }
+
+  .modal {
+    @include keep-it-hundo;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    padding-bottom: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.814);
+    border: 1px solid white;
+
+    .modal-score {
+      color: white;
+      font-size: 32px;
+    }
+
+    .button-refresh {
+      width: 150px;
+      height: 30px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .showModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .shuffle-area {
