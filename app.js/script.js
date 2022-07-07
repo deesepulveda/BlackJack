@@ -112,9 +112,9 @@ const winningHand = () => {
     modalScore.textContent = "Player Wins!!";
   }
 
-  // if (playerValue.textContent === "21") {
-  //   modalScore.textContent = "BlackJack! Player Wins!";
-  // }
+  if (playerValue.textContent === "21") {
+    modalScore.textContent = "BlackJack! Player Wins!";
+  }
 
   if (
     dealerValue.textContent > playerValue.textContent &&
@@ -199,6 +199,13 @@ buttonDeal.addEventListener("click", () => {
   shuffleNow();
   // setTimeout(shuffleNow, 2200);
 
+  //Remove Hidden Class from Image src
+  dealerShuffledImg.classList.remove("hidden");
+
+  shuffledImg.forEach((s) => {
+    s.classList.remove("hidden");
+  });
+
   // Show Hit Button after Deal Button Pressed
   buttons.forEach((b) => {
     if (b.classList.contains("hidden")) {
@@ -217,10 +224,10 @@ buttonDeal.addEventListener("click", () => {
 let i = 2;
 
 buttonHit.addEventListener("click", () => {
+  shuffledImg[1].classList.add("moveLeft");
   let newImages = document.createElement("img");
   newImages.classList.add("shuffled-img");
   newImages.classList.add("moveLeft");
-  shuffledImg[1].classList.add("moveLeft");
   newImages.src = `./public/images/${shuffledDeck[i]}.png`;
   flopPlayerContainer.appendChild(newImages);
   playerSumDeck.push(convertStr(shuffledDeck[i]));

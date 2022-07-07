@@ -117,14 +117,17 @@ body {
     padding-bottom: 20rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.814); }
     .bg .modal .modal-score {
       width: 80%;
-      height: 40%;
+      height: 80%;
       color: yellow;
-      font-size: 32px; }
+      font-size: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .bg .modal .button-refresh {
       width: 150px;
       height: 30px;
