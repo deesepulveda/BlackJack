@@ -112,9 +112,9 @@ const winningHand = () => {
     modalScore.textContent = "Player Wins!!";
   }
 
-  if (playerValue.textContent === "21") {
-    modalScore.textContent = "BlackJack! Player Wins!";
-  }
+  // if (playerValue.textContent === "21") {
+  //   modalScore.textContent = "BlackJack! Player Wins!";
+  // }
 
   if (
     dealerValue.textContent > playerValue.textContent &&
@@ -248,6 +248,18 @@ buttonHit.addEventListener("click", () => {
 
 let n = 6;
 
+const dealerMustFlop = () => {
+  if (dealerValue.textContent <= 16) {
+    let newImages = document.createElement("img");
+    newImages.classList.add("dealer-shuffled-img");
+    newImages.src = `./public/images/${shuffledDeck[n]}.png`;
+    flopDealerContainer.appendChild(newImages);
+    dealerSumDeck.push(convertStr(shuffledDeck[n]));
+    dealerSumCount(convertStr(shuffledDeck[n]));
+    n++;
+  }
+};
+
 buttonStay.addEventListener("click", () => {
   buttonHit.classList.add("hidden");
   buttonStay.classList.add("hidden");
@@ -262,7 +274,8 @@ buttonStay.addEventListener("click", () => {
   dealerSumCount(convertStr(shuffledDeck[n]));
   n++;
 
-  winningHand();
+  setTimeout(winningHand, 2000);
+  setTimeout(dealerMustFlop, 1000);
 });
 
 // Modal Button to Refresh/New Game
