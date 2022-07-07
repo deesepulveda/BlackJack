@@ -73,7 +73,7 @@ body {
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -84,7 +84,7 @@ body {
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -102,7 +102,7 @@ body {
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -119,10 +119,11 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.814);
-    border: 1px solid white; }
+    background-color: rgba(0, 0, 0, 0.814); }
     .bg .modal .modal-score {
-      color: white;
+      width: 80%;
+      height: 40%;
+      color: yellow;
       font-size: 32px; }
     .bg .modal .button-refresh {
       width: 150px;
@@ -155,7 +156,7 @@ body {
       top: 50%;
       left: 50%;
       object-fit: cover;
-      border: 2px solid white;
+      border: 1px solid white;
       border-radius: 5%;
       -webkit-border-radius: 5%;
       -moz-border-radius: 5%;
@@ -181,6 +182,9 @@ body {
         margin-right: 1rem; }
 
 /*********************************************************/
+.moveLeft {
+  margin-left: -50px; }
+
 .hidden {
   display: none; }
 

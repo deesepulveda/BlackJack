@@ -104,37 +104,38 @@ const dealerSumCount = (num) => {
 
 const winningHand = () => {
   modal.classList.add("showModal");
-  if (playerValue.textContent === "21" || dealerValue.textContent === "21") {
-    //console.log("BlackJack");
-    modalScore.textContent = "BlackJack!";
-  }
 
   if (
     playerValue.textContent > dealerValue.textContent &&
     playerValue.textContent < "22"
   ) {
-    //console.log("Player Wins!");
     modalScore.textContent = "Player Wins!!";
   }
+
+  // if (playerValue.textContent === "21") {
+  //   modalScore.textContent = "BlackJack! Player Wins!";
+  // }
 
   if (
     dealerValue.textContent > playerValue.textContent &&
     dealerValue.textContent < "22"
   ) {
-    //console.log("Dealer Wins!");
     modalScore.textContent = "Dealer Wins!!";
   }
 
   if (playerValue.textContent >= "22") {
-    //console.log("Dealer Wins!");
     modalScore.textContent = "Player Bust!!";
   }
 
   if (dealerValue.textContent == playerValue.textContent) {
-    //console.log("Push");
     modalScore.textContent = "Push!";
   }
 };
+
+// ************************************************** //
+// Automatic Modal
+// When Player Hits BlackJack on Flop
+// when Player Busts
 
 // ************************************************** //
 
@@ -218,6 +219,8 @@ let i = 2;
 buttonHit.addEventListener("click", () => {
   let newImages = document.createElement("img");
   newImages.classList.add("shuffled-img");
+  newImages.classList.add("moveLeft");
+  shuffledImg[1].classList.add("moveLeft");
   newImages.src = `./public/images/${shuffledDeck[i]}.png`;
   flopPlayerContainer.appendChild(newImages);
   playerSumDeck.push(convertStr(shuffledDeck[i]));
@@ -255,6 +258,7 @@ buttonStay.addEventListener("click", () => {
   winningHand();
 });
 
+// Modal Button to Refresh/New Game
 buttonRefresh.addEventListener("click", () => {
   modal.classList.remove("showModal");
   window.location.reload();

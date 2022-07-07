@@ -56,7 +56,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -68,7 +68,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -88,7 +88,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 2px solid white;
+          border: 1px solid white;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -110,10 +110,11 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.814);
-    border: 1px solid white;
 
     .modal-score {
-      color: white;
+      width: 80%;
+      height: 40%;
+      color: yellow;
       font-size: 32px;
     }
 
@@ -155,7 +156,7 @@
       top: 50%;
       left: 50%;
       object-fit: cover;
-      border: 2px solid white;
+      border: 1px solid white;
       border-radius: 5%;
       -webkit-border-radius: 5%;
       -moz-border-radius: 5%;
@@ -189,6 +190,10 @@
 }
 
 /*********************************************************/
+
+.moveLeft {
+  margin-left: -50px;
+}
 
 .hidden {
   display: none;
