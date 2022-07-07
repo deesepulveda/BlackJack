@@ -112,13 +112,13 @@ const evaluateHands = () => {
     modalScore.textContent = "Player Wins!!";
   }
 
-  if (dealerValue.textContent >= 22 && playerValue.textContent < 22) {
+  if (dealerValue.textContent >= "22" && playerValue.textContent < "22") {
     modalScore.textContent = "Dealer Bust...Player Wins!";
   }
 
-  // if (playerValue.textContent === "21") {
-  //   modalScore.textContent = "BlackJack! Player Wins!";
-  // }
+  if (playerValue.textContent === "21" && !dealerValue.textContent === "21") {
+    modalScore.textContent = "BlackJack! Player Wins!";
+  }
 
   if (
     dealerValue.textContent > playerValue.textContent &&
@@ -140,13 +140,13 @@ const evaluateHands = () => {
 
 // Player Flops BlackJack
 const blackJackPlayer = (val) => {
-  if (val === 21 || val >= 22) {
+  if (val === "21" || val >= "22") {
     buttonHit.classList.add("hidden");
     buttonStay.classList.add("hidden");
     dealerMustFlop();
-    setTimeout(dealerFlopAgain, 1000);
+    setTimeout(dealerFlopAgain, 800);
 
-    setTimeout(evaluateHands, 2000);
+    setTimeout(evaluateHands, 1500);
   }
 };
 
@@ -230,10 +230,33 @@ buttonDeal.addEventListener("click", () => {
   buttonDeal.classList.add("hidden");
 
   blackJackPlayer(playerValue.textContent);
-  console.log(playerValue.textContent);
 });
 
 // ************************************************** //
+
+// Dealer Flop Functions
+
+let n = 6;
+
+const dealerMustFlop = () => {
+  // Dealer Flops Cards
+  let newImages = document.createElement("img");
+  newImages.classList.add("dealer-shuffled-img");
+  newImages.src = `./public/images/${shuffledDeck[n]}.png`;
+  flopDealerContainer.appendChild(newImages);
+  dealerSumDeck.push(convertStr(shuffledDeck[n]));
+  dealerSumCount(convertStr(shuffledDeck[n]));
+  closedShuffleImg.classList.add("hidden");
+  n++;
+
+  newImages.classList.add("moveLeft");
+};
+
+const dealerFlopAgain = () => {
+  if (dealerValue.textContent <= 17) {
+    dealerMustFlop();
+  }
+};
 
 // hit Button Function
 
@@ -250,8 +273,6 @@ buttonHit.addEventListener("click", () => {
   playerSumCount(convertStr(shuffledDeck[i]));
   i++;
 
-  console.log(playerSumDeck);
-
   blackJackPlayer(playerValue.textContent);
 
   // Hide Hit Button if Player Hits All Five Cards
@@ -264,25 +285,6 @@ buttonHit.addEventListener("click", () => {
 
 //Hide Hit Button After Stay Button is Pressed
 
-let n = 6;
-
-const dealerMustFlop = () => {
-  // Dealer Flops Cards
-  let newImages = document.createElement("img");
-  newImages.classList.add("dealer-shuffled-img");
-  newImages.src = `./public/images/${shuffledDeck[n]}.png`;
-  flopDealerContainer.appendChild(newImages);
-  dealerSumDeck.push(convertStr(shuffledDeck[n]));
-  dealerSumCount(convertStr(shuffledDeck[n]));
-  n++;
-};
-
-const dealerFlopAgain = () => {
-  if (dealerValue.textContent <= 17) {
-    dealerMustFlop();
-  }
-};
-
 buttonStay.addEventListener("click", () => {
   buttonHit.classList.add("hidden");
   buttonStay.classList.add("hidden");
@@ -291,7 +293,7 @@ buttonStay.addEventListener("click", () => {
 
   setTimeout(dealerFlopAgain, 1000);
 
-  setTimeout(evaluateHands, 2000);
+  setTimeout(evaluateHands, 1500);
 });
 
 // Modal Button to Refresh/New Game

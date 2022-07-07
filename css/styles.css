@@ -64,7 +64,6 @@ body {
       .bg .table .player-cards .flop-dealer {
         width: 100%;
         height: auto;
-        position: relative;
         display: flex;
         justify-content: space-evenly;
         align-items: center; }
