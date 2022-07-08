@@ -22,12 +22,12 @@
     z-index: -1;
   }
 
-  // @include tabletLandscape {
-  //   & {
-  //     flex-direction: row;
-  //     justify-content: space-evenly;
-  //   }
-  // }
+  @include tabletLandscape {
+    & {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
 
   .table {
     width: 75%;
@@ -44,6 +44,10 @@
     .player-cards {
       width: 100%;
       height: calc(100% / 2);
+
+      .title {
+        font-size: 2rem;
+      }
 
       .player-value,
       .dealer-value {
@@ -63,7 +67,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 1px solid white;
+          border: 1px solid black;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -82,7 +86,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 1px solid white;
+          border: 1px solid black;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -109,7 +113,7 @@
           width: 100px;
           height: 140px;
           object-fit: cover;
-          border: 1px solid white;
+          border: 1px solid black;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -137,25 +141,25 @@
     justify-content: center;
     align-items: center;
 
-    // @include tabletLandscape {
-    //   & {
-    //     width: 30%;
-    //     height: 100%;
-    //     border-left: 1px solid white;
-    //   }
-    // }
+    @include tabletLandscape {
+      & {
+        width: 25%;
+        height: 100%;
+        border-left: 1px solid white;
+      }
+    }
 
     .shuffled-deck {
       display: none;
 
-      // @include tabletLandscape {
-      //   & {
-      //     display: block;
-      //     @include keep-it-hundo;
-      //     @include flex-center;
-      //     position: relative;
-      //   }
-      // }
+      @include tabletLandscape {
+        & {
+          display: block;
+          @include keep-it-hundo;
+          @include flex-center-col;
+          position: relative;
+        }
+      }
 
       .shuffling-deck-img {
         width: 100px;
@@ -164,7 +168,7 @@
         top: 50%;
         left: 50%;
         object-fit: cover;
-        border: 1px solid white;
+        border: 1px solid black;
         border-radius: 5%;
         -webkit-border-radius: 5%;
         -moz-border-radius: 5%;
@@ -218,6 +222,12 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.814);
 
+    @include tabletLandscape {
+      & {
+        padding-bottom: 10rem;
+      }
+    }
+
     .modal-score {
       width: 80%;
       height: 80%;
@@ -237,6 +247,12 @@
       height: 30px;
       font-size: 20px;
       cursor: pointer;
+
+      @include tabletLandscape {
+        & {
+          margin-top: 15rem;
+        }
+      }
     }
   }
 
@@ -254,7 +270,7 @@
 
   @include tabletPortrait {
     & {
-      margin-left: -250px;
+      margin-left: -150px;
     }
   }
 }
@@ -286,8 +302,15 @@
 // Card Animation Classes
 
 .shuffleMove {
-  animation: move 500ms ease-in-out;
-  -webkit-animation: move 500ms ease-in-out;
+  animation: move 0ms ease-in-out;
+  -webkit-animation: move 0ms ease-in-out;
+
+  @include tabletLandscape {
+    & {
+      animation: move 500ms ease-in-out;
+      -webkit-animation: move 500ms ease-in-out;
+    }
+  }
 }
 
 // Keyframes for Animations

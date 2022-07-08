@@ -125,9 +125,13 @@ const evaluateHands = () => {
     modalScore.textContent = "Dealer Bust...Player Wins!";
   }
 
-  if (playerFinalHandCount === 21 && !dealerFinalHandCount === 21) {
-    modalScore.textContent = "BlackJack! Player Wins!";
-  }
+  // if (
+  //   (playerFinalHandCount === 21 && !dealerFinalHandCount === 21) ||
+  //   (playerFinalHandCount === 21 && dealerFinalHandCount < 21) ||
+  //   (playerFinalHandCount === 21 && dealerFinalHandCount > 21)
+  // ) {
+  //   modalScore.textContent = "BlackJack! Player Wins!";
+  // }
 
   if (
     dealerFinalHandCount > playerFinalHandCount &&
@@ -143,15 +147,25 @@ const evaluateHands = () => {
   if (dealerFinalHandCount === playerFinalHandCount) {
     modalScore.textContent = "Push!";
   }
-
-  console.log(playerFinalHandCount, dealerFinalHandCount);
 };
 
 // ************************************************** //
 
 // Player Flops BlackJack
 const blackJackPlayer = (val) => {
-  if (val === 21 || val > 21) {
+  if (val === 21) {
+    modalScore.textContent = "BLACKJACK!";
+    buttonHit.classList.add("hidden");
+    buttonStay.classList.add("hidden");
+    dealerMustFlop();
+    setTimeout(dealerFlopAgain, 800);
+
+    setTimeout(evaluateHands, 1500);
+  }
+};
+
+const bustedCardsPlayer = (val) => {
+  if (val > 21) {
     buttonHit.classList.add("hidden");
     buttonStay.classList.add("hidden");
     dealerMustFlop();
@@ -167,7 +181,7 @@ const blackJackPlayer = (val) => {
 const cardUIShuffle = () => {
   for (let i = 0; i < 10; i++) {
     let cardImages = document.createElement("img");
-    cardImages.src = "./public/images/cardPattern.jpg";
+    cardImages.src = "./public/images/backpattern.jpg";
     cardImages.classList.add("shuffling-deck-img");
     shuffledContainer.appendChild(cardImages);
     cardImages.style.animationDelay = `.${i}s`;
@@ -217,13 +231,12 @@ const mediaQueryDesktop = window.matchMedia("(min-width: 1080px)");
 // Deal Button Function
 
 buttonDeal.addEventListener("click", () => {
-  shuffleNow();
-  // if (mediaQueryDesktop.matches === true) {
-  //   cardUIShuffle();
-  //   setTimeout(shuffleNow, 2200);
-  // } else {
-  //   shuffleNow();
-  // }
+  cardUIShuffle();
+  if (mediaQueryDesktop.matches === true) {
+    setTimeout(shuffleNow, 1500);
+  } else {
+    setTimeout(shuffleNow, 100);
+  }
 
   //Remove Hidden Class from Image src
   dealerShuffledImg.classList.remove("hidden");
@@ -242,8 +255,10 @@ buttonDeal.addEventListener("click", () => {
   // Hide Deal Button after First Press
   buttonDeal.classList.add("hidden");
 
-  // If Player Flops BlackJack
+  // If Player Hits Sum of 21
   blackJackPlayer(playerFinalHandCount);
+  // IF Player Busts
+  bustedCardsPlayer(playerFinalHandCount);
 });
 
 // ************************************************** //
@@ -289,7 +304,10 @@ buttonHit.addEventListener("click", () => {
   playerSumCount(convertStr(shuffledDeck[i]));
   i++;
 
-  blackJackPlayer(playerValue.textContent);
+  // If Player Hits Sum of 21
+  blackJackPlayer(playerFinalHandCount);
+  // IF Player Busts
+  bustedCardsPlayer(playerFinalHandCount);
 
   // Hide Hit Button if Player Hits All Five Cards
 
@@ -307,14 +325,11 @@ buttonStay.addEventListener("click", () => {
   closedShuffleImg.classList.add("hidden");
   dealerMustFlop();
 
+  setTimeout(dealerFlopAgain, 300);
   setTimeout(dealerFlopAgain, 500);
   setTimeout(dealerFlopAgain, 700);
-  setTimeout(dealerFlopAgain, 900);
 
-  setTimeout(evaluateHands, 1100);
-
-  console.log(playerSumDeck);
-  console.log(dealerSumDeck);
+  setTimeout(evaluateHands, 900);
 });
 
 // Modal Button to Refresh/New Game
