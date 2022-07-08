@@ -29,6 +29,13 @@
     }
   }
 
+  // .table,
+  // .shuffle-area,
+  // .modal {
+  //   max-width: 100rem;
+  //   margin: 0 auto;
+  // }
+
   .table {
     width: 75%;
     height: 100%;
@@ -80,6 +87,13 @@
               height: 200px;
             }
           }
+
+          @include largeDesktop {
+            & {
+              width: 200px;
+              height: 300px;
+            }
+          }
         }
 
         .dealer-shuffled-img {
@@ -97,6 +111,12 @@
             & {
               width: 140px;
               height: 200px;
+            }
+          }
+          @include largeDesktop {
+            & {
+              width: 200px;
+              height: 300px;
             }
           }
         }
@@ -124,6 +144,13 @@
             & {
               width: 140px;
               height: 200px;
+            }
+          }
+
+          @include largeDesktop {
+            & {
+              width: 200px;
+              height: 300px;
             }
           }
         }
@@ -186,6 +213,13 @@
             height: 200px;
           }
         }
+
+        @include largeDesktop {
+          & {
+            width: 200px;
+            height: 300px;
+          }
+        }
       }
     }
 
@@ -211,7 +245,8 @@
   // Modal
 
   .modal {
-    @include keep-it-hundo;
+    width: 100vw;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: -100%;
@@ -257,6 +292,8 @@
   }
 
   .showModal {
+    width: 100vw;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;

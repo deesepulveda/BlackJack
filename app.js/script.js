@@ -152,20 +152,8 @@ const evaluateHands = () => {
 // ************************************************** //
 
 // Player Flops BlackJack
-const blackJackPlayer = (val) => {
-  if (val === 21) {
-    modalScore.textContent = "BLACKJACK!";
-    buttonHit.classList.add("hidden");
-    buttonStay.classList.add("hidden");
-    dealerMustFlop();
-    setTimeout(dealerFlopAgain, 800);
-
-    setTimeout(evaluateHands, 1500);
-  }
-};
-
-const bustedCardsPlayer = (val) => {
-  if (val > 21) {
+const blackJackorBust = (val) => {
+  if (val === 21 || val > 21) {
     buttonHit.classList.add("hidden");
     buttonStay.classList.add("hidden");
     dealerMustFlop();
@@ -255,10 +243,8 @@ buttonDeal.addEventListener("click", () => {
   // Hide Deal Button after First Press
   buttonDeal.classList.add("hidden");
 
-  // If Player Hits Sum of 21
-  blackJackPlayer(playerFinalHandCount);
-  // IF Player Busts
-  bustedCardsPlayer(playerFinalHandCount);
+  // If Player Hits Sum of 21 or Bust
+  blackJackorBust(playerFinalHandCount);
 });
 
 // ************************************************** //
@@ -289,7 +275,7 @@ const dealerFlopAgain = () => {
   }
 };
 
-// hit Button Function
+// Hit Button Function
 
 let i = 2;
 
@@ -304,10 +290,8 @@ buttonHit.addEventListener("click", () => {
   playerSumCount(convertStr(shuffledDeck[i]));
   i++;
 
-  // If Player Hits Sum of 21
-  blackJackPlayer(playerFinalHandCount);
-  // IF Player Busts
-  bustedCardsPlayer(playerFinalHandCount);
+  // If Player Hits Sum of 21 or Bust
+  blackJackorBust(playerFinalHandCount);
 
   // Hide Hit Button if Player Hits All Five Cards
 
