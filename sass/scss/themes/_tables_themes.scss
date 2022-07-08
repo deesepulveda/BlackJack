@@ -22,6 +22,13 @@
     z-index: -1;
   }
 
+  // @include tabletLandscape {
+  //   & {
+  //     flex-direction: row;
+  //     justify-content: space-evenly;
+  //   }
+  // }
+
   .table {
     width: 75%;
     height: 100%;
@@ -120,6 +127,85 @@
     }
   }
 
+  // Shuffle Area
+
+  .shuffle-area {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    // @include tabletLandscape {
+    //   & {
+    //     width: 30%;
+    //     height: 100%;
+    //     border-left: 1px solid white;
+    //   }
+    // }
+
+    .shuffled-deck {
+      display: none;
+
+      // @include tabletLandscape {
+      //   & {
+      //     display: block;
+      //     @include keep-it-hundo;
+      //     @include flex-center;
+      //     position: relative;
+      //   }
+      // }
+
+      .shuffling-deck-img {
+        width: 100px;
+        height: 140px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        object-fit: cover;
+        border: 1px solid white;
+        border-radius: 5%;
+        -webkit-border-radius: 5%;
+        -moz-border-radius: 5%;
+        -ms-border-radius: 5%;
+        -o-border-radius: 5%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+
+        @include tabletPortrait {
+          & {
+            width: 140px;
+            height: 200px;
+          }
+        }
+      }
+    }
+
+    .buttons-container {
+      @include keep-it-hundo;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: 100px;
+        height: 30px;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:not(:last-of-type) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  // Modal
+
   .modal {
     @include keep-it-hundo;
     position: absolute;
@@ -161,73 +247,16 @@
   }
 }
 
-.shuffle-area {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .shuffled-deck {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .shuffling-deck-img {
-      width: 100px;
-      height: 140px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      object-fit: cover;
-      border: 1px solid white;
-      border-radius: 5%;
-      -webkit-border-radius: 5%;
-      -moz-border-radius: 5%;
-      -ms-border-radius: 5%;
-      -o-border-radius: 5%;
-      transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-
-      @include tabletPortrait {
-        & {
-          width: 140px;
-          height: 200px;
-        }
-      }
-    }
-  }
-
-  .buttons-container {
-    @include keep-it-hundo;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    button {
-      width: 100px;
-      height: 30px;
-      font-size: 20px;
-      cursor: pointer;
-
-      &:not(:last-of-type) {
-        margin-right: 1rem;
-      }
-    }
-  }
-}
-
 /*********************************************************/
 
 .moveLeft {
   margin-left: -50px;
+
+  @include tabletPortrait {
+    & {
+      margin-left: -250px;
+    }
+  }
 }
 
 .hidden {
@@ -257,8 +286,8 @@
 // Card Animation Classes
 
 .shuffleMove {
-  animation: move 1000ms ease-in-out;
-  -webkit-animation: move 1000ms ease-in-out;
+  animation: move 500ms ease-in-out;
+  -webkit-animation: move 500ms ease-in-out;
 }
 
 // Keyframes for Animations

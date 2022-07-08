@@ -69,15 +69,20 @@ const convertStr = (str) => {
 // Total Sum Converter
 let sumValueTotal = 0;
 
-// Evaluate Scores/Value
+// Store Final Score
+let playerFinalHandCount = "";
 
+// Evaluate Scores/Value
 const playerSumCount = (num) => {
   // Player Deck Sum
   for (let i = 0; i < playerSumDeck.length; i++) {
     sumValueTotal += num;
 
     // Player's Sum Displayed on Screen
-    return (playerValue.textContent = `${sumValueTotal}`);
+    return (
+      (playerValue.textContent = `${sumValueTotal}`),
+      (playerFinalHandCount = sumValueTotal)
+    );
   }
 };
 
@@ -86,61 +91,67 @@ const playerSumCount = (num) => {
 // Total Sum Converter
 let sumDealerValueTotal = 0;
 
-// Evaluate Scores/Value
+// Store Final Score
+let dealerFinalHandCount = "";
 
+// Evaluate Scores/Value
 const dealerSumCount = (num) => {
   // Player Deck Sum
   for (let i = 0; i < dealerSumDeck.length; i++) {
     sumDealerValueTotal += num;
 
     // Player's Sum Displayed on Screen
-    return (dealerValue.textContent = `${sumDealerValueTotal}`);
+    return (
+      (dealerValue.textContent = `${sumDealerValueTotal}`),
+      (dealerFinalHandCount = sumDealerValueTotal)
+    );
   }
 };
 
 // ************************************************** //
 
 //Check to see if Dealer or Player Wins
-
 const evaluateHands = () => {
   modal.classList.add("showModal");
 
   if (
-    playerValue.textContent > dealerValue.textContent &&
-    playerValue.textContent < "22"
+    playerFinalHandCount > dealerFinalHandCount &&
+    playerFinalHandCount < 22
   ) {
     modalScore.textContent = "Player Wins!!";
   }
 
-  if (dealerValue.textContent >= "22" && playerValue.textContent < "22") {
+  if (dealerFinalHandCount >= 22 && playerFinalHandCount < 22) {
     modalScore.textContent = "Dealer Bust...Player Wins!";
   }
 
-  if (playerValue.textContent === "21" && !dealerValue.textContent === "21") {
+  if (playerFinalHandCount === 21 && !dealerFinalHandCount === 21) {
     modalScore.textContent = "BlackJack! Player Wins!";
   }
 
   if (
-    dealerValue.textContent > playerValue.textContent &&
-    dealerValue.textContent < "22"
+    dealerFinalHandCount > playerFinalHandCount &&
+    dealerFinalHandCount < 22
   ) {
     modalScore.textContent = "Dealer Wins!!";
   }
 
-  if (playerValue.textContent >= "22") {
+  if (playerFinalHandCount > 21) {
     modalScore.textContent = "Player Bust!!";
   }
 
-  if (dealerValue.textContent == playerValue.textContent) {
+  if (dealerFinalHandCount === playerFinalHandCount) {
     modalScore.textContent = "Push!";
   }
+
+  console.log(playerFinalHandCount, dealerFinalHandCount);
 };
 
 // ************************************************** //
 
 // Player Flops BlackJack
 const blackJackPlayer = (val) => {
-  if (val === "21" || val >= "22") {
+  if (val === 21 || val > 21) {
     buttonHit.classList.add("hidden");
     buttonStay.classList.add("hidden");
     dealerMustFlop();
@@ -153,7 +164,6 @@ const blackJackPlayer = (val) => {
 // ************************************************** //
 
 // Function to Shuffle Cards UI
-
 const cardUIShuffle = () => {
   for (let i = 0; i < 10; i++) {
     let cardImages = document.createElement("img");
@@ -194,23 +204,26 @@ const shuffleNow = () => {
     playerSumCount(convertStr(shuffledDeck[i]));
   });
 
+  // Generate First Card Flop for Dealer
   dealerShuffledImg.src = `./public/images/${shuffledDeck[5]}.png`;
   dealerSumDeck.push(convertStr(shuffledDeck[5]));
   dealerSumCount(convertStr(shuffledDeck[5]));
-
-  console.log(shuffledDeck);
-  console.log(playerSumDeck);
-  console.log(dealerSumDeck);
 };
 
 // ************************************************** //
 
+const mediaQueryDesktop = window.matchMedia("(min-width: 1080px)");
+
 // Deal Button Function
 
 buttonDeal.addEventListener("click", () => {
-  //cardUIShuffle();
   shuffleNow();
-  // setTimeout(shuffleNow, 2200);
+  // if (mediaQueryDesktop.matches === true) {
+  //   cardUIShuffle();
+  //   setTimeout(shuffleNow, 2200);
+  // } else {
+  //   shuffleNow();
+  // }
 
   //Remove Hidden Class from Image src
   dealerShuffledImg.classList.remove("hidden");
@@ -229,7 +242,8 @@ buttonDeal.addEventListener("click", () => {
   // Hide Deal Button after First Press
   buttonDeal.classList.add("hidden");
 
-  blackJackPlayer(playerValue.textContent);
+  // If Player Flops BlackJack
+  blackJackPlayer(playerFinalHandCount);
 });
 
 // ************************************************** //
@@ -240,18 +254,20 @@ let n = 6;
 
 const dealerMustFlop = () => {
   // Dealer Flops Cards
+  closedShuffleImg.classList.add("hidden");
   let newImages = document.createElement("img");
   newImages.classList.add("dealer-shuffled-img");
   newImages.src = `./public/images/${shuffledDeck[n]}.png`;
   flopDealerContainer.appendChild(newImages);
   dealerSumDeck.push(convertStr(shuffledDeck[n]));
   dealerSumCount(convertStr(shuffledDeck[n]));
-  closedShuffleImg.classList.add("hidden");
+
   n++;
 
   newImages.classList.add("moveLeft");
 };
 
+// Dealer
 const dealerFlopAgain = () => {
   if (dealerValue.textContent <= 17) {
     dealerMustFlop();
@@ -291,9 +307,14 @@ buttonStay.addEventListener("click", () => {
   closedShuffleImg.classList.add("hidden");
   dealerMustFlop();
 
-  setTimeout(dealerFlopAgain, 1000);
+  setTimeout(dealerFlopAgain, 500);
+  setTimeout(dealerFlopAgain, 700);
+  setTimeout(dealerFlopAgain, 900);
 
-  setTimeout(evaluateHands, 1500);
+  setTimeout(evaluateHands, 1100);
+
+  console.log(playerSumDeck);
+  console.log(dealerSumDeck);
 });
 
 // Modal Button to Refresh/New Game
