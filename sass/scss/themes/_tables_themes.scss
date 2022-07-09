@@ -257,12 +257,6 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.814);
 
-    @include tabletLandscape {
-      & {
-        padding-bottom: 10rem;
-      }
-    }
-
     .modal-score {
       width: 80%;
       height: 80%;

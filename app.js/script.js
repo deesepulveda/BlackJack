@@ -151,21 +151,29 @@ const evaluateHands = () => {
 
 // ************************************************** //
 
-// Player Flops BlackJack
+// Hit and Stay Buttons Function
+
+const addButtons = () => {
+  buttonHit.classList.add("hidden");
+  buttonStay.classList.add("hidden");
+};
+
+// Player Hits 21 or Bust
+
 const blackJackorBust = (val) => {
-  if (val === 21 || val > 21) {
-    buttonHit.classList.add("hidden");
-    buttonStay.classList.add("hidden");
+  if (val == 21 || val > 21) {
+    addButtons();
     dealerMustFlop();
     setTimeout(dealerFlopAgain, 800);
 
-    setTimeout(evaluateHands, 1500);
+    setTimeout(evaluateHands, 1100);
   }
 };
 
 // ************************************************** //
 
 // Function to Shuffle Cards UI
+
 const cardUIShuffle = () => {
   for (let i = 0; i < 10; i++) {
     let cardImages = document.createElement("img");
@@ -210,9 +218,15 @@ const shuffleNow = () => {
   dealerShuffledImg.src = `./public/images/${shuffledDeck[5]}.png`;
   dealerSumDeck.push(convertStr(shuffledDeck[5]));
   dealerSumCount(convertStr(shuffledDeck[5]));
+
+  // If Player Hits Sum of 21 or Bust
+
+  blackJackorBust(playerFinalHandCount);
 };
 
 // ************************************************** //
+
+// Media Query
 
 const mediaQueryDesktop = window.matchMedia("(min-width: 1080px)");
 
@@ -227,6 +241,7 @@ buttonDeal.addEventListener("click", () => {
   }
 
   //Remove Hidden Class from Image src
+
   dealerShuffledImg.classList.remove("hidden");
 
   shuffledImg.forEach((s) => {
@@ -234,6 +249,7 @@ buttonDeal.addEventListener("click", () => {
   });
 
   // Show Hit Button after Deal Button Pressed
+
   buttons.forEach((b) => {
     if (b.classList.contains("hidden")) {
       b.classList.remove("hidden");
@@ -241,10 +257,8 @@ buttonDeal.addEventListener("click", () => {
   });
 
   // Hide Deal Button after First Press
-  buttonDeal.classList.add("hidden");
 
-  // If Player Hits Sum of 21 or Bust
-  blackJackorBust(playerFinalHandCount);
+  buttonDeal.classList.add("hidden");
 });
 
 // ************************************************** //
@@ -255,10 +269,11 @@ let n = 6;
 
 const dealerMustFlop = () => {
   // Dealer Flops Cards
+
   closedShuffleImg.classList.add("hidden");
   let newImages = document.createElement("img");
-  newImages.classList.add("dealer-shuffled-img");
   newImages.src = `./public/images/${shuffledDeck[n]}.png`;
+  newImages.classList.add("dealer-shuffled-img");
   flopDealerContainer.appendChild(newImages);
   dealerSumDeck.push(convertStr(shuffledDeck[n]));
   dealerSumCount(convertStr(shuffledDeck[n]));
@@ -269,6 +284,7 @@ const dealerMustFlop = () => {
 };
 
 // Dealer
+
 const dealerFlopAgain = () => {
   if (dealerValue.textContent <= 17) {
     dealerMustFlop();
@@ -282,41 +298,42 @@ let i = 2;
 buttonHit.addEventListener("click", () => {
   shuffledImg[1].classList.add("moveLeft");
   let newImages = document.createElement("img");
+  newImages.src = `./public/images/${shuffledDeck[i]}.png`;
   newImages.classList.add("shuffled-img");
   newImages.classList.add("moveLeft");
-  newImages.src = `./public/images/${shuffledDeck[i]}.png`;
   flopPlayerContainer.appendChild(newImages);
   playerSumDeck.push(convertStr(shuffledDeck[i]));
   playerSumCount(convertStr(shuffledDeck[i]));
   i++;
 
   // If Player Hits Sum of 21 or Bust
+
   blackJackorBust(playerFinalHandCount);
 
   // Hide Hit Button if Player Hits All Five Cards
 
   if (i == 5) {
-    buttonHit.classList.add("hidden");
-    buttonStay.classList.add("hiddeb");
+    addButtons();
   }
 });
 
 //Hide Hit Button After Stay Button is Pressed
 
 buttonStay.addEventListener("click", () => {
-  buttonHit.classList.add("hidden");
-  buttonStay.classList.add("hidden");
+  addButtons();
   closedShuffleImg.classList.add("hidden");
   dealerMustFlop();
 
-  setTimeout(dealerFlopAgain, 300);
-  setTimeout(dealerFlopAgain, 500);
-  setTimeout(dealerFlopAgain, 700);
+  for (let x = 0; x < 3; x++) {
+    setTimeout(dealerFlopAgain, 500);
+    x++;
+  }
 
   setTimeout(evaluateHands, 900);
 });
 
 // Modal Button to Refresh/New Game
+
 buttonRefresh.addEventListener("click", () => {
   modal.classList.remove("showModal");
   window.location.reload();
