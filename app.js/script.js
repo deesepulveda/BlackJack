@@ -161,7 +161,7 @@ const addButtons = () => {
 // Player Hits 21 or Bust
 
 const blackJackorBust = (val) => {
-  if (val == 21 || val > 21) {
+  if (val === 21 || val > 21) {
     addButtons();
     dealerMustFlop();
     setTimeout(dealerFlopAgain, 800);
