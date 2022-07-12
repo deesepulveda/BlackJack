@@ -40,6 +40,10 @@
         height: 40%;
       }
 
+      &:first-of-type {
+        margin-top: 2rem;
+      }
+
       &:last-of-type {
         height: 20%;
         @include flex-center;
@@ -110,17 +114,42 @@
         @include transit6;
       }
 
-      .stay-btn {
+      .hit-btn {
         margin-right: 2rem;
       }
     }
   }
 
   .modal {
+    display: none;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 0, 0, 0.438);
+    background-color: rgba(0, 0, 0, 0.692);
+    position: relative;
     @include absol-topLeftZero;
+
+    .modal-value {
+      width: 100%;
+      height: calc((100% / 2) - 5rem);
+      margin-top: 10rem;
+      font-size: 3rem;
+      color: $color-yellow;
+      @include flex-center;
+    }
+
+    .refresh-btn {
+      font-size: 2rem;
+      margin-bottom: 10rem;
+      padding: 1rem 2rem;
+      @include transit6;
+      @include absol-bottomCenter;
+      @include transformX;
+      cursor: pointer;
+    }
+  }
+
+  .showModal {
+    display: block;
   }
 }
 
@@ -141,64 +170,6 @@
   @include transformX;
 }
 
-/*********************************************************/
-
-/*********************************************************/
-
-// Card Animation Classes
-
-//   .shuffleMove {
-//     animation: move 0ms ease-in-out;
-//     -webkit-animation: move 0ms ease-in-out;
-
-//     @include tabletLandscape {
-//       & {
-//         animation: move 500ms ease-in-out;
-//         -webkit-animation: move 500ms ease-in-out;
-//       }
-//     }
-//   }
-
-//   // Keyframes for Animations
-
-//   @keyframes move {
-//     0% {
-//       transform: translate(-50%, -50%);
-//       -webkit-transform: translate(-50%, -50%);
-//       -moz-transform: translate(-50%, -50%);
-//       -ms-transform: translate(-50%, -50%);
-//       -o-transform: translate(-50%, -50%);
-//     }
-
-//     25% {
-//       transform: translate(-30%, -50%);
-//       -webkit-transform: translate(-30%, -50%);
-//       -moz-transform: translate(-30%, -50%);
-//       -ms-transform: translate(-30%, -50%);
-//       -o-transform: translate(-30%, -50%);
-//     }
-
-//     50% {
-//       transform: translate(-70%, -50%) rotate(170deg);
-//       -webkit-transform: translate(-70%, -50%) rotate(170deg);
-//       -moz-transform: translate(-70%, -50%) rotate(170deg);
-//       -ms-transform: translate(-70%, -50%) rotate(170deg);
-//       -o-transform: translate(-70%, -50%) rotate(170deg);
-//     }
-
-//     70% {
-//       transform: translate(-30%, -50%);
-//       -webkit-transform: translate(-30%, -50%);
-//       -moz-transform: translate(-30%, -50%);
-//       -ms-transform: translate(-30%, -50%);
-//       -o-transform: translate(-30%, -50%);
-//     }
-
-//     90% {
-//       transform: translate(-70%, -50%);
-//       -webkit-transform: translate(-70%, -50%);
-//       -moz-transform: translate(-70%, -50%);
-//       -ms-transform: translate(-70%, -50%);
-//       -o-transform: translate(-70%, -50%);
-//     }
-//   }
+.showModal {
+  display: block;
+}

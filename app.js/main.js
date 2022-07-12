@@ -13,6 +13,9 @@ const cardImgsBack = document.querySelectorAll(".card-imgs-back");
 const dealButton = document.querySelector(".deal-btn");
 const hitButton = document.querySelector(".hit-btn");
 const stayButton = document.querySelector(".stay-btn");
+const modal = document.querySelector(".modal");
+const modalValue = document.querySelector(".modal-value");
+const refreshButton = document.querySelector(".refresh-btn");
 
 // ************************************************** //
 // Create Deck of Cards //
@@ -72,9 +75,6 @@ const convertStr = (str) => {
 // Total Sum Converter
 let sumDealerValueTotal = 0;
 
-// Store Final Score
-let dealerFinalHandCount = "";
-
 // Evaluate Scores/Value
 const dealerSumCount = (num) => {
   // Player Deck Sum
@@ -82,10 +82,7 @@ const dealerSumCount = (num) => {
     sumDealerValueTotal += num;
 
     // Player's Sum Displayed on Screen
-    return (
-      (dealerCardValue.textContent = `${sumDealerValueTotal}`),
-      (dealerFinalHandCount = sumDealerValueTotal)
-    );
+    return (dealerCardValue.textContent = `${sumDealerValueTotal}`);
   }
 };
 
@@ -96,9 +93,6 @@ const dealerSumCount = (num) => {
 // Total Sum Converter
 let sumValueTotal = 0;
 
-// Store Final Score
-let playerFinalHandCount = "";
-
 // Evaluate Scores/Value
 const playerSumCount = (num) => {
   // Player Deck Sum
@@ -106,10 +100,7 @@ const playerSumCount = (num) => {
     sumValueTotal += num;
 
     // Player's Sum Displayed on Screen
-    return (
-      (playerCardValue.textContent = `${sumValueTotal}`),
-      (playerFinalHandCount = sumValueTotal)
-    );
+    return (playerCardValue.textContent = `${sumValueTotal}`);
   }
 };
 
@@ -154,6 +145,60 @@ const convertPlayerSum = (valueIndex) => {
   playerSumCount(convertStr(shuffledDeck[valueIndex]));
 };
 
+const dealerHitAgain = () => {
+  for (let n = 2; n < 5; n++) {
+    if (sumDealerValueTotal <= 17) {
+      removeHiddenCards(n);
+      convertDealerSum(n);
+      rotateCards(n);
+      addCardImgs(n);
+    }
+  }
+};
+
+const dealerCardHit = () => {
+  convertDealerSum(0);
+  rotateCards(0);
+  addCardImgs(0);
+
+  setTimeout(dealerHitAgain, 400);
+};
+
+// ************************************************** //
+// Evaluate Hands //
+// ************************************************** //
+
+const blackJackorBust = (val) => {
+  if (val === 21 || val > 21) {
+    setTimeout(dealerCardHit, 400);
+    hideHitButton();
+    hideStayButton();
+    setTimeout(evaluateHands, 1100);
+  }
+};
+
+const evaluateHands = () => {
+  modal.classList.add("showModal");
+
+  if (
+    (sumValueTotal > sumDealerValueTotal && sumValueTotal < 22) ||
+    (sumDealerValueTotal >= 22 && sumValueTotal < 22)
+  ) {
+    modalValue.textContent = "Player Wins!!";
+  }
+
+  if (
+    (sumDealerValueTotal > sumValueTotal && sumDealerValueTotal < 22) ||
+    sumValueTotal > 21
+  ) {
+    modalValue.textContent = "Dealer Wins!!";
+  }
+
+  if (sumDealerValueTotal === sumValueTotal) {
+    modalValue.textContent = "Push!";
+  }
+};
+
 // ************************************************** //
 // Shuffle Function //
 // ************************************************** //
@@ -179,6 +224,10 @@ const shuffleNow = () => {
   // Generate First Card Flop for Dealer
   for (let i = 0; i < 2; i++) {
     removeHiddenCards(i);
+  }
+
+  // Only Show Dealer's 2nd Card
+  for (let i = 1; i < 2; i++) {
     convertDealerSum(i);
     rotateCards(i);
     addCardImgs(i);
@@ -194,9 +243,9 @@ const shuffleNow = () => {
 
   // If Player Hits Sum of 21 or Bust
 
-  // blackJackorBust(playerFinalHandCount);
+  blackJackorBust(sumValueTotal);
 
-  console.log(shuffledDeck);
+  // console.log(shuffledDeck);
 };
 
 // ************************************************** //
@@ -223,6 +272,8 @@ hitButton.addEventListener("click", () => {
   addCardImgs(i);
   i++;
 
+  blackJackorBust(sumValueTotal);
+
   if (i === 10) {
     hideHitButton();
     hideStayButton();
@@ -236,4 +287,17 @@ hitButton.addEventListener("click", () => {
 stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
+  setTimeout(dealerCardHit, 400);
+  setTimeout(evaluateHands, 1000);
 });
+
+// ************************************************** //
+// Refresh Modal Button Function //
+// ************************************************** //
+
+refreshButton.addEventListener("click", () => {
+  modal.classList.remove("showModal");
+  window.location.reload();
+});
+
+// ************************************************** //

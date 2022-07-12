@@ -16,6 +16,18 @@
   left: 0;
 }
 
+@mixin absol-bottomLeftZero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin absol-bottomCenter {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;

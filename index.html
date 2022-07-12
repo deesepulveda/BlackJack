@@ -11,13 +11,12 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/styles.css" />
-    <!-- <script defer src="./app.js/script.js"></script> -->
     <script defer src="./app.js/main.js"></script>
   </head>
   <body>
     <div class="table">
       <div class="table-container">
-        <!-- Dealer -->
+        <!---------- Dealer ---------->
         <div class="wrappers dealer-section-wrapper">
           <h1 class="section-wrapper-title">Dealer</h1>
           <!-- Card Sum -->
@@ -120,7 +119,7 @@
             </div>
           </div>
         </div>
-        <!-- Player -->
+        <!---------- Player ---------->
         <div class="wrappers player-section-wrapper">
           <h1 class="section-wrapper-title">Player</h1>
           <!-- Card Sum -->
@@ -226,11 +225,14 @@
         <!-- Buttons -->
         <div class="wrappers buttons-section-wrapper">
           <button class="deal-btn">Deal</button>
-          <button class="stay-btn hidden">Stay</button>
           <button class="hit-btn hidden">Hit</button>
+          <button class="stay-btn hidden">Stay</button>
         </div>
       </div>
-      <div class="modal hidden"></div>
+      <div class="modal">
+        <h2 class="modal-value"></h2>
+        <button class="refresh-btn">New Game</button>
+      </div>
     </div>
   </body>
 </html>
