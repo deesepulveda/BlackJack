@@ -1,5 +1,9 @@
 "use strict";
 
+// ************************************************** //
+// Cached //
+// ************************************************** //
+
 const dealerShuffledImg = document.querySelector(".dealer-shuffled-img");
 const closedShuffleImg = document.querySelector(".closed-shuffled-img");
 const shuffledImg = document.querySelectorAll(".shuffled-img");
@@ -16,6 +20,10 @@ const dealerValue = document.querySelector(".dealer-value");
 const modal = document.querySelector(".modal");
 const modalScore = document.querySelector(".modal-score");
 const buttonRefresh = document.querySelector(".button-refresh");
+
+// ************************************************** //
+// Create Deck of Cards //
+// ************************************************** //
 
 // Cards Suit and Rank Arrays
 const suit = ["C", "H", "S", "D"];
@@ -34,14 +42,14 @@ for (let s = 0; s < suit.length; s++) {
   }
 }
 
-// ************************************************** //
-
 // Create Sum of Player's Flopped/Open Cards
 let playerSumDeck = [];
 
 // Create Sum of Dealers's Flopped/Open Cards
 let dealerSumDeck = [];
 
+// ************************************************** //
+// Convert Strings to Numbers //
 // ************************************************** //
 
 //Convert Str to Num then Push into Array
@@ -65,6 +73,8 @@ const convertStr = (str) => {
 };
 
 // ************************************************** //
+// Calculate Sum of Player's Hand //
+// ************************************************** //
 
 // Total Sum Converter
 let sumValueTotal = 0;
@@ -86,6 +96,8 @@ const playerSumCount = (num) => {
   }
 };
 
+// ************************************************** //
+// Calculate Sum of Dealer's Hand //
 // ************************************************** //
 
 // Total Sum Converter
@@ -109,39 +121,26 @@ const dealerSumCount = (num) => {
 };
 
 // ************************************************** //
+// Evaluate Dealer's/Player's Hands //
+// ************************************************** //
 
-//Check to see if Dealer or Player Wins
 const evaluateHands = () => {
   modal.classList.add("showModal");
 
   if (
-    playerFinalHandCount > dealerFinalHandCount &&
-    playerFinalHandCount < 22
+    (playerFinalHandCount > dealerFinalHandCount &&
+      playerFinalHandCount < 22) ||
+    (dealerFinalHandCount >= 22 && playerFinalHandCount < 22)
   ) {
     modalScore.textContent = "Player Wins!!";
   }
 
-  if (dealerFinalHandCount >= 22 && playerFinalHandCount < 22) {
-    modalScore.textContent = "Dealer Bust...Player Wins!";
-  }
-
-  // if (
-  //   (playerFinalHandCount === 21 && !dealerFinalHandCount === 21) ||
-  //   (playerFinalHandCount === 21 && dealerFinalHandCount < 21) ||
-  //   (playerFinalHandCount === 21 && dealerFinalHandCount > 21)
-  // ) {
-  //   modalScore.textContent = "BlackJack! Player Wins!";
-  // }
-
   if (
-    dealerFinalHandCount > playerFinalHandCount &&
-    dealerFinalHandCount < 22
+    (dealerFinalHandCount > playerFinalHandCount &&
+      dealerFinalHandCount < 22) ||
+    playerFinalHandCount > 21
   ) {
     modalScore.textContent = "Dealer Wins!!";
-  }
-
-  if (playerFinalHandCount > 21) {
-    modalScore.textContent = "Player Bust!!";
   }
 
   if (dealerFinalHandCount === playerFinalHandCount) {
@@ -150,6 +149,8 @@ const evaluateHands = () => {
 };
 
 // ************************************************** //
+// Functions //
+// ************************************************** //
 
 // Hit and Stay Buttons Function
 
@@ -157,6 +158,8 @@ const addButtons = () => {
   buttonHit.classList.add("hidden");
   buttonStay.classList.add("hidden");
 };
+
+// ********** //
 
 // Player Hits 21 or Bust
 
@@ -170,7 +173,7 @@ const blackJackorBust = (val) => {
   }
 };
 
-// ************************************************** //
+// ********** //
 
 // Function to Shuffle Cards UI
 
@@ -185,9 +188,41 @@ const cardUIShuffle = () => {
   }
 };
 
-// ************************************************** //
+// ********** //
 
-// Function to Pick Random Card from CardDeck Array
+// Dealer Flop Functions
+
+let n = 6;
+
+const dealerMustFlop = () => {
+  // Dealer Flops Cards
+
+  closedShuffleImg.classList.add("hidden");
+  let newImages = document.createElement("img");
+  newImages.src = `./public/images/${shuffledDeck[n]}.png`;
+  newImages.classList.add("dealer-shuffled-img");
+  flopDealerContainer.appendChild(newImages);
+  dealerSumDeck.push(convertStr(shuffledDeck[n]));
+  dealerSumCount(convertStr(shuffledDeck[n]));
+
+  n++;
+
+  newImages.classList.add("moveLeft");
+};
+
+// ********** //
+
+// Dealer
+
+const dealerFlopAgain = () => {
+  if (dealerValue.textContent <= 17) {
+    dealerMustFlop();
+  }
+};
+
+// ************************************************** //
+// Shuffle Function //
+// ************************************************** //
 
 const shuffleNow = () => {
   // Generate Random Pick from Deck Array
@@ -207,14 +242,14 @@ const shuffleNow = () => {
     cardDeck.splice(shuffledDataIndex, 1);
   }
 
-  // Create Image for Dealer and Player First Cards Flop
+  // Create Image for Player's First Cards Flop
   shuffledImg.forEach((s, i) => {
     s.src = `./public/images/${shuffledDeck[i]}.png`;
     playerSumDeck.push(convertStr(shuffledDeck[i]));
     playerSumCount(convertStr(shuffledDeck[i]));
   });
 
-  // Generate First Card Flop for Dealer
+  // Generate First Card Flop for Dealer's
   dealerShuffledImg.src = `./public/images/${shuffledDeck[5]}.png`;
   dealerSumDeck.push(convertStr(shuffledDeck[5]));
   dealerSumCount(convertStr(shuffledDeck[5]));
@@ -225,12 +260,14 @@ const shuffleNow = () => {
 };
 
 // ************************************************** //
-
-// Media Query
+// Media Query //
+// ************************************************** //
 
 const mediaQueryDesktop = window.matchMedia("(min-width: 1080px)");
 
-// Deal Button Function
+// ************************************************** //
+// Deal Button Function //
+// ************************************************** //
 
 buttonDeal.addEventListener("click", () => {
   cardUIShuffle();
@@ -262,36 +299,8 @@ buttonDeal.addEventListener("click", () => {
 });
 
 // ************************************************** //
-
-// Dealer Flop Functions
-
-let n = 6;
-
-const dealerMustFlop = () => {
-  // Dealer Flops Cards
-
-  closedShuffleImg.classList.add("hidden");
-  let newImages = document.createElement("img");
-  newImages.src = `./public/images/${shuffledDeck[n]}.png`;
-  newImages.classList.add("dealer-shuffled-img");
-  flopDealerContainer.appendChild(newImages);
-  dealerSumDeck.push(convertStr(shuffledDeck[n]));
-  dealerSumCount(convertStr(shuffledDeck[n]));
-
-  n++;
-
-  newImages.classList.add("moveLeft");
-};
-
-// Dealer
-
-const dealerFlopAgain = () => {
-  if (dealerValue.textContent <= 17) {
-    dealerMustFlop();
-  }
-};
-
-// Hit Button Function
+// Hit Button Function //
+// ************************************************** //
 
 let i = 2;
 
@@ -314,10 +323,13 @@ buttonHit.addEventListener("click", () => {
 
   if (i == 5) {
     addButtons();
+    setTimeout(evaluateHands, 900);
   }
 });
 
-//Hide Hit Button After Stay Button is Pressed
+// ************************************************** //
+// Stay Button Function //
+// ************************************************** //
 
 buttonStay.addEventListener("click", () => {
   addButtons();
@@ -332,7 +344,9 @@ buttonStay.addEventListener("click", () => {
   setTimeout(evaluateHands, 900);
 });
 
-// Modal Button to Refresh/New Game
+// ************************************************** //
+// Refresh Modal Button Function //
+// ************************************************** //
 
 buttonRefresh.addEventListener("click", () => {
   modal.classList.remove("showModal");

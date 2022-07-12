@@ -47,6 +47,14 @@
   position: -webkit-sticky;
 }
 
+@mixin transformXRight {
+  transform: translateX(200%);
+  -webkit-transform: translateX(200%);
+  -moz-transform: translateX(200%);
+  -ms-transform: translateX(200%);
+  -o-transform: translateX(200%);
+}
+
 @mixin transformX {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -144,4 +152,28 @@
   -moz-transition: 0.8s ease;
   -ms-transition: 0.8s ease;
   -o-transition: 0.8s ease;
+}
+
+@mixin perspective {
+  transform: perspective(50rem) rotateY(0deg);
+  -webkit-transform: perspective(50rem) rotateY(0deg);
+  -moz-transform: perspective(50rem) rotateY(0deg);
+  -ms-transform: perspective(50rem) rotateY(0deg);
+  -o-transform: perspective(50rem) rotateY(0deg);
+}
+
+@mixin perspectivePlus {
+  transform: perspective(60rem) rotateY(180deg);
+  -webkit-transform: perspective(60rem) rotateY(180deg);
+  -moz-transform: perspective(60rem) rotateY(180deg);
+  -ms-transform: perspective(60rem) rotateY(180deg);
+  -o-transform: perspective(60rem) rotateY(180deg);
+}
+
+@mixin perspectiveNegative {
+  transform: perspective(60rem) rotateY(-180deg);
+  -webkit-transform: perspective(60rem) rotateY(-180deg);
+  -moz-transform: perspective(60rem) rotateY(-180deg);
+  -ms-transform: perspective(60rem) rotateY(-180deg);
+  -o-transform: perspective(60rem) rotateY(-180deg);
 }
