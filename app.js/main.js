@@ -15,13 +15,6 @@ const hitButton = document.querySelector(".hit-btn");
 const stayButton = document.querySelector(".stay-btn");
 
 // ************************************************** //
-// Hide All Cards in Beginning//
-// ************************************************** //
-cards.forEach((c) => {
-  c.classList.add("cardsHidden");
-});
-
-// ************************************************** //
 // Create Deck of Cards //
 // ************************************************** //
 
@@ -121,20 +114,7 @@ const playerSumCount = (num) => {
 };
 
 // ************************************************** //
-// Change of State Function //
-// ************************************************** //
-
-const stateChange = () => {
-  cards[i].classList.remove("cardsHidden");
-  cardFront[i].style.transform = "rotateY(-180deg)";
-  cardBack[i].style.transform = "rotateY(0deg)";
-  playerSumDeck.push(convertStr(shuffledDeck[i]));
-  playerSumCount(convertStr(shuffledDeck[i]));
-  i++;
-};
-
-// ************************************************** //
-// Functions //
+// CallBack Functions //
 // ************************************************** //
 
 const hideDealButton = () => {
@@ -147,6 +127,31 @@ const hideHitButton = () => {
 
 const hideStayButton = () => {
   stayButton.classList.add("hidden");
+};
+
+const removeHiddenCards = (valueIndex) => {
+  cards[valueIndex].classList.remove("cardsHidden");
+};
+
+const rotateCards = (cardIndex) => {
+  cardFront[cardIndex].style.transform = "rotateY(180deg)";
+  cardBack[cardIndex].style.transform = "rotateY(0deg)";
+};
+
+const addCardImgs = (valueIndex) => {
+  cardImgsBack[
+    valueIndex
+  ].src = `./public/images/${shuffledDeck[valueIndex]}.png`;
+};
+
+const convertDealerSum = (valueIndex) => {
+  dealerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
+  dealerSumCount(convertStr(shuffledDeck[valueIndex]));
+};
+
+const convertPlayerSum = (valueIndex) => {
+  playerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
+  playerSumCount(convertStr(shuffledDeck[valueIndex]));
 };
 
 // ************************************************** //
@@ -173,24 +178,18 @@ const shuffleNow = () => {
 
   // Generate First Card Flop for Dealer
   for (let i = 0; i < 2; i++) {
-    cards[i].classList.remove("cardsHidden");
-    dealerSumDeck.push(convertStr(shuffledDeck[i]));
-    dealerSumCount(convertStr(shuffledDeck[i]));
-    cardFront[1].style.transform = "rotateY(-180deg)";
-    cardBack[1].style.transform = "rotateY(0deg)";
+    removeHiddenCards(i);
+    convertDealerSum(i);
+    rotateCards(i);
+    addCardImgs(i);
   }
 
   // Generate First Card Flop for Player
-  cardImgsBack.forEach((s, i) => {
-    s.src = `./public/images/${shuffledDeck[i]}.png`;
-  });
-
   for (let i = 5; i < 7; i++) {
-    cards[i].classList.remove("cardsHidden");
-    playerSumDeck.push(convertStr(shuffledDeck[i]));
-    playerSumCount(convertStr(shuffledDeck[i]));
-    cardFront[i].style.transform = "rotateY(-180deg)";
-    cardBack[i].style.transform = "rotateY(0deg)";
+    removeHiddenCards(i);
+    convertPlayerSum(i);
+    rotateCards(i);
+    addCardImgs(i);
   }
 
   // If Player Hits Sum of 21 or Bust
@@ -207,6 +206,8 @@ const shuffleNow = () => {
 dealButton.addEventListener("click", () => {
   shuffleNow();
   hideDealButton();
+  hitButton.classList.remove("hidden");
+  stayButton.classList.remove("hidden");
 });
 
 // ************************************************** //
@@ -216,7 +217,16 @@ dealButton.addEventListener("click", () => {
 let i = 7;
 
 hitButton.addEventListener("click", () => {
-  stateChange();
+  removeHiddenCards(i);
+  convertPlayerSum(i);
+  rotateCards(i);
+  addCardImgs(i);
+  i++;
+
+  if (i === 10) {
+    hideHitButton();
+    hideStayButton();
+  }
 });
 
 // ************************************************** //

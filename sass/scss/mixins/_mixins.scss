@@ -80,6 +80,10 @@
 
 //----------SHADOW MIXINS-----------
 
+@mixin shadowLeft {
+  box-shadow: -0.1rem -0.1rem -0.2rem $color-dark;
+}
+
 @mixin shadow {
   box-shadow: 0.2rem 0.2rem 0.4rem $color-dark;
 }
