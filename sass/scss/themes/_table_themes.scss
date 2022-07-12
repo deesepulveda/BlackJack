@@ -1,10 +1,7 @@
 .table {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex-center-col;
   position: relative;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.727);
@@ -26,7 +23,6 @@
     @include keep-it-hundo;
     max-width: 120rem;
     margin: 0 auto;
-    border: 1px solid $color-lite;
     @include flex-center-col;
     justify-content: flex-end;
 
@@ -77,17 +73,22 @@
           transform-style: preserve-3d;
           overflow: hidden;
           @include transit6;
-          border-radius: 5%;
-          -webkit-border-radius: 5%;
-          -moz-border-radius: 5%;
-          -ms-border-radius: 5%;
-          -o-border-radius: 5%;
+          @include borderFive;
+
+          @include tabletPortrait {
+            & {
+              width: 140px;
+              height: 200px;
+            }
+          }
 
           .card-front,
           .card-back {
             @include keep-it-hundo;
             @include absol-topLeftZero;
             @include transit6;
+            @include borderFive;
+            border: 0.2rem solid $color-dark;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
 

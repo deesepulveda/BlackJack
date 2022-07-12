@@ -93,7 +93,7 @@
 //----------SHADOW MIXINS-----------
 
 @mixin shadowLeft {
-  box-shadow: -0.1rem -0.1rem -0.2rem $color-dark;
+  box-shadow: -0.2rem -0.2rem -0.4rem $color-dark;
 }
 
 @mixin shadow {
@@ -192,4 +192,14 @@
   -moz-transform: perspective(60rem) rotateY(-180deg);
   -ms-transform: perspective(60rem) rotateY(-180deg);
   -o-transform: perspective(60rem) rotateY(-180deg);
+}
+
+//----------BORDER MIXINS-----------
+
+@mixin borderFive {
+  border-radius: 5%;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  -ms-border-radius: 5%;
+  -o-border-radius: 5%;
 }
