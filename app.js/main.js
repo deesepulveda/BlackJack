@@ -170,9 +170,9 @@ const dealerCardHit = () => {
 
 const blackJackorBust = (val) => {
   if (val === 21 || val > 21) {
-    setTimeout(dealerCardHit, 400);
     hideHitButton();
     hideStayButton();
+    setTimeout(dealerCardHit, 400);
     setTimeout(evaluateHands, 1100);
   }
 };
@@ -277,6 +277,7 @@ hitButton.addEventListener("click", () => {
   if (i === 10) {
     hideHitButton();
     hideStayButton();
+    setTimeout(dealerCardHit, 400);
   }
 });
 
@@ -288,7 +289,7 @@ stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
   setTimeout(dealerCardHit, 400);
-  setTimeout(evaluateHands, 1000);
+  setTimeout(evaluateHands, 1100);
 });
 
 // ************************************************** //

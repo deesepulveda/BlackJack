@@ -139,7 +139,7 @@
 
     .refresh-btn {
       font-size: 2rem;
-      margin-bottom: 10rem;
+      margin-bottom: 15rem;
       padding: 1rem 2rem;
       @include transit6;
       @include absol-bottomCenter;
@@ -168,8 +168,4 @@
   top: 50%;
   left: -100%;
   @include transformX;
-}
-
-.showModal {
-  display: block;
 }

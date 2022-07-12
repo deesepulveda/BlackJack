@@ -169,7 +169,7 @@ body {
       align-items: center; }
     .table .modal .refresh-btn {
       font-size: 2rem;
-      margin-bottom: 10rem;
+      margin-bottom: 15rem;
       padding: 1rem 2rem;
       transition: 0.6s ease;
       -webkit-transition: 0.6s ease;
@@ -203,6 +203,3 @@ body {
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%); }
-
-.showModal {
-  display: block; }
