@@ -120,13 +120,17 @@ const hideStayButton = () => {
   stayButton.classList.add("hidden");
 };
 
-const removeHiddenCards = (valueIndex) => {
-  cards[valueIndex].classList.remove("cardsHidden");
+const rotateCards = (cardIndex) => {
+  cardFront[cardIndex].classList.add("rotateFrontCard");
+  cardBack[cardIndex].classList.add("rotateBackCard");
 };
 
-const rotateCards = (cardIndex) => {
-  cardFront[cardIndex].style.transform = "rotateY(180deg)";
-  cardBack[cardIndex].style.transform = "rotateY(0deg)";
+const moveCardLeft = (cardIndex) => {
+  cards[cardIndex].classList.add("moveLeft");
+};
+
+const addWidth = (cardIndex) => {
+  cards[cardIndex].classList.add("widthOpen");
 };
 
 const addCardImgs = (valueIndex) => {
@@ -148,20 +152,24 @@ const convertPlayerSum = (valueIndex) => {
 const dealerHitAgain = () => {
   for (let n = 2; n < 5; n++) {
     if (sumDealerValueTotal <= 17) {
-      removeHiddenCards(n);
+      addWidth(n);
       convertDealerSum(n);
       rotateCards(n);
       addCardImgs(n);
+      moveCardLeft(n);
     }
   }
 };
 
 const dealerCardHit = () => {
+  addWidth(0);
   convertDealerSum(0);
   rotateCards(0);
   addCardImgs(0);
+  moveCardLeft(0);
+  moveCardLeft(1);
 
-  setTimeout(dealerHitAgain, 400);
+  setTimeout(dealerHitAgain, 600);
 };
 
 // ************************************************** //
@@ -223,26 +231,25 @@ const shuffleNow = () => {
 
   // Generate First Card Flop for Dealer
   for (let i = 0; i < 2; i++) {
-    removeHiddenCards(i);
+    addWidth(i);
   }
 
   // Only Show Dealer's 2nd Card
   for (let i = 1; i < 2; i++) {
-    convertDealerSum(i);
     rotateCards(i);
     addCardImgs(i);
+    convertDealerSum(i);
   }
 
   // Generate First Card Flop for Player
   for (let i = 5; i < 7; i++) {
-    removeHiddenCards(i);
-    convertPlayerSum(i);
+    addWidth(i);
     rotateCards(i);
     addCardImgs(i);
+    convertPlayerSum(i);
   }
 
   // If Player Hits Sum of 21 or Bust
-
   blackJackorBust(sumValueTotal);
 
   // console.log(shuffledDeck);
@@ -266,10 +273,12 @@ dealButton.addEventListener("click", () => {
 let i = 7;
 
 hitButton.addEventListener("click", () => {
-  removeHiddenCards(i);
-  convertPlayerSum(i);
+  addWidth(i);
   rotateCards(i);
   addCardImgs(i);
+  moveCardLeft(6);
+  moveCardLeft(i);
+  convertPlayerSum(i);
   i++;
 
   blackJackorBust(sumValueTotal);
@@ -278,6 +287,7 @@ hitButton.addEventListener("click", () => {
     hideHitButton();
     hideStayButton();
     setTimeout(dealerCardHit, 400);
+    setTimeout(evaluateHands, 1100);
   }
 });
 
@@ -300,5 +310,3 @@ refreshButton.addEventListener("click", () => {
   modal.classList.remove("showModal");
   window.location.reload();
 });
-
-// ************************************************** //

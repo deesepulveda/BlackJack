@@ -30,7 +30,6 @@
       width: 100%;
       position: relative;
       overflow: hidden;
-      // border: 1px solid $color-yellow;
 
       &:not(:last-of-type) {
         height: 40%;
@@ -62,22 +61,22 @@
       .player-card-container {
         width: 90%;
         height: auto;
-        margin: 5rem auto;
+        margin: 1rem auto;
         position: relative;
         @include flex-center;
+        // border: 1px solid $color-yellow;
 
         .cards {
-          width: 100px;
+          width: 0;
           height: 140px;
           position: relative;
           transform-style: preserve-3d;
-          overflow: hidden;
-          @include transit6;
+          @include transit4;
           @include borderFive;
+          // border: 1px solid $color-yellow;
 
           @include tabletPortrait {
             & {
-              width: 140px;
               height: 200px;
             }
           }
@@ -86,11 +85,12 @@
           .card-back {
             @include keep-it-hundo;
             @include absol-topLeftZero;
-            @include transit6;
+            @include transit4;
             @include borderFive;
-            border: 0.2rem solid $color-dark;
+            overflow: hidden;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            transition-delay: 0.3s;
 
             .card-imgs {
               @include keep-it-hundo;
@@ -99,11 +99,45 @@
           }
 
           .card-front {
-            @include perspective;
+            transform: perspective(50rem) rotateY(0deg);
+            -webkit-transform: perspective(50rem) rotateY(0deg);
+            -moz-transform: perspective(50rem) rotateY(0deg);
+            -ms-transform: perspective(50rem) rotateY(0deg);
+            -o-transform: perspective(50rem) rotateY(0deg);
           }
 
           .card-back {
-            @include perspectivePlus;
+            transform: perspective(60rem) rotateY(180deg);
+            -webkit-transform: perspective(60rem) rotateY(180deg);
+            -moz-transform: perspective(60rem) rotateY(180deg);
+            -ms-transform: perspective(60rem) rotateY(180deg);
+            -o-transform: perspective(60rem) rotateY(180deg);
+          }
+
+          .rotateFrontCard {
+            transform: perspective(50rem) rotateY(180deg);
+            -webkit-transform: perspective(50rem) rotateY(180deg);
+            -moz-transform: perspective(50rem) rotateY(180deg);
+            -ms-transform: perspective(50rem) rotateY(180deg);
+            -o-transform: perspective(50rem) rotateY(180deg);
+          }
+
+          .rotateBackCard {
+            transform: perspective(50rem) rotateY(0deg);
+            -webkit-transform: perspective(50rem) rotateY(0deg);
+            -moz-transform: perspective(50rem) rotateY(0deg);
+            -ms-transform: perspective(50rem) rotateY(0deg);
+            -o-transform: perspective(50rem) rotateY(0deg);
+          }
+        }
+
+        .widthOpen {
+          width: 100px;
+
+          @include tabletPortrait {
+            & {
+              width: 140px;
+            }
           }
         }
       }
@@ -169,4 +203,8 @@
   top: 50%;
   left: -100%;
   @include transformX;
+}
+
+.widthOpen {
+  width: 100px;
 }

@@ -78,23 +78,22 @@ body {
       .table .table-container .wrappers .player-card-container {
         width: 90%;
         height: auto;
-        margin: 5rem auto;
+        margin: 1rem auto;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center; }
         .table .table-container .wrappers .dealer-card-container .cards,
         .table .table-container .wrappers .player-card-container .cards {
-          width: 100px;
+          width: 0;
           height: 140px;
           position: relative;
           transform-style: preserve-3d;
-          overflow: hidden;
-          transition: 0.6s ease;
-          -webkit-transition: 0.6s ease;
-          -moz-transition: 0.6s ease;
-          -ms-transition: 0.6s ease;
-          -o-transition: 0.6s ease;
+          transition: 0.4s ease;
+          -webkit-transition: 0.4s ease;
+          -moz-transition: 0.4s ease;
+          -ms-transition: 0.4s ease;
+          -o-transition: 0.4s ease;
           border-radius: 5%;
           -webkit-border-radius: 5%;
           -moz-border-radius: 5%;
@@ -103,7 +102,6 @@ body {
           @media only screen and (min-width: 768px) {
             .table .table-container .wrappers .dealer-card-container .cards,
             .table .table-container .wrappers .player-card-container .cards {
-              width: 140px;
               height: 200px; } }
           .table .table-container .wrappers .dealer-card-container .cards .card-front,
           .table .table-container .wrappers .dealer-card-container .cards .card-back,
@@ -114,19 +112,20 @@ body {
             position: absolute;
             top: 0;
             left: 0;
-            transition: 0.6s ease;
-            -webkit-transition: 0.6s ease;
-            -moz-transition: 0.6s ease;
-            -ms-transition: 0.6s ease;
-            -o-transition: 0.6s ease;
+            transition: 0.4s ease;
+            -webkit-transition: 0.4s ease;
+            -moz-transition: 0.4s ease;
+            -ms-transition: 0.4s ease;
+            -o-transition: 0.4s ease;
             border-radius: 5%;
             -webkit-border-radius: 5%;
             -moz-border-radius: 5%;
             -ms-border-radius: 5%;
             -o-border-radius: 5%;
-            border: 0.2rem solid #050505;
+            overflow: hidden;
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden; }
+            -webkit-backface-visibility: hidden;
+            transition-delay: 0.3s; }
             .table .table-container .wrappers .dealer-card-container .cards .card-front .card-imgs,
             .table .table-container .wrappers .dealer-card-container .cards .card-back .card-imgs,
             .table .table-container .wrappers .player-card-container .cards .card-front .card-imgs,
@@ -148,6 +147,27 @@ body {
             -moz-transform: perspective(60rem) rotateY(180deg);
             -ms-transform: perspective(60rem) rotateY(180deg);
             -o-transform: perspective(60rem) rotateY(180deg); }
+          .table .table-container .wrappers .dealer-card-container .cards .rotateFrontCard,
+          .table .table-container .wrappers .player-card-container .cards .rotateFrontCard {
+            transform: perspective(50rem) rotateY(180deg);
+            -webkit-transform: perspective(50rem) rotateY(180deg);
+            -moz-transform: perspective(50rem) rotateY(180deg);
+            -ms-transform: perspective(50rem) rotateY(180deg);
+            -o-transform: perspective(50rem) rotateY(180deg); }
+          .table .table-container .wrappers .dealer-card-container .cards .rotateBackCard,
+          .table .table-container .wrappers .player-card-container .cards .rotateBackCard {
+            transform: perspective(50rem) rotateY(0deg);
+            -webkit-transform: perspective(50rem) rotateY(0deg);
+            -moz-transform: perspective(50rem) rotateY(0deg);
+            -ms-transform: perspective(50rem) rotateY(0deg);
+            -o-transform: perspective(50rem) rotateY(0deg); }
+        .table .table-container .wrappers .dealer-card-container .widthOpen,
+        .table .table-container .wrappers .player-card-container .widthOpen {
+          width: 100px; }
+          @media only screen and (min-width: 768px) {
+            .table .table-container .wrappers .dealer-card-container .widthOpen,
+            .table .table-container .wrappers .player-card-container .widthOpen {
+              width: 140px; } }
       .table .table-container .wrappers button {
         font-size: 2rem;
         padding: 1rem 2rem;
@@ -213,3 +233,6 @@ body {
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%); }
+
+.widthOpen {
+  width: 100px; }
