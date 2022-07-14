@@ -112,11 +112,11 @@ body {
             position: absolute;
             top: 0;
             left: 0;
-            transition: 0.4s ease;
-            -webkit-transition: 0.4s ease;
-            -moz-transition: 0.4s ease;
-            -ms-transition: 0.4s ease;
-            -o-transition: 0.4s ease;
+            transition: 0.6s ease;
+            -webkit-transition: 0.6s ease;
+            -moz-transition: 0.6s ease;
+            -ms-transition: 0.6s ease;
+            -o-transition: 0.6s ease;
             border-radius: 5%;
             -webkit-border-radius: 5%;
             -moz-border-radius: 5%;
@@ -125,7 +125,8 @@ body {
             overflow: hidden;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            transition-delay: 0.3s; }
+            transition-delay: 0.3s;
+            box-shadow: -0.5rem 0rem 0.5rem rgba(0, 0, 0, 0.61); }
             .table .table-container .wrappers .dealer-card-container .cards .card-front .card-imgs,
             .table .table-container .wrappers .dealer-card-container .cards .card-back .card-imgs,
             .table .table-container .wrappers .player-card-container .cards .card-front .card-imgs,

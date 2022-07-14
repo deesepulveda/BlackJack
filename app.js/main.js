@@ -120,9 +120,12 @@ const hideStayButton = () => {
   stayButton.classList.add("hidden");
 };
 
-const rotateCards = (cardIndex) => {
+const rotateAndAddImage = (cardIndex) => {
   cardFront[cardIndex].classList.add("rotateFrontCard");
   cardBack[cardIndex].classList.add("rotateBackCard");
+  cardImgsBack[
+    cardIndex
+  ].src = `./public/images/${shuffledDeck[cardIndex]}.png`;
 };
 
 const moveCardLeft = (cardIndex) => {
@@ -131,12 +134,6 @@ const moveCardLeft = (cardIndex) => {
 
 const addWidth = (cardIndex) => {
   cards[cardIndex].classList.add("widthOpen");
-};
-
-const addCardImgs = (valueIndex) => {
-  cardImgsBack[
-    valueIndex
-  ].src = `./public/images/${shuffledDeck[valueIndex]}.png`;
 };
 
 const convertDealerSum = (valueIndex) => {
@@ -154,8 +151,7 @@ const dealerHitAgain = () => {
     if (sumDealerValueTotal <= 17) {
       addWidth(n);
       convertDealerSum(n);
-      rotateCards(n);
-      addCardImgs(n);
+      rotateAndAddImage(n);
       moveCardLeft(n);
     }
   }
@@ -164,8 +160,7 @@ const dealerHitAgain = () => {
 const dealerCardHit = () => {
   addWidth(0);
   convertDealerSum(0);
-  rotateCards(0);
-  addCardImgs(0);
+  rotateAndAddImage(0);
   moveCardLeft(0);
   moveCardLeft(1);
 
@@ -236,16 +231,14 @@ const shuffleNow = () => {
 
   // Only Show Dealer's 2nd Card
   for (let i = 1; i < 2; i++) {
-    rotateCards(i);
-    addCardImgs(i);
+    rotateAndAddImage(i);
     convertDealerSum(i);
   }
 
   // Generate First Card Flop for Player
   for (let i = 5; i < 7; i++) {
     addWidth(i);
-    rotateCards(i);
-    addCardImgs(i);
+    rotateAndAddImage(i);
     convertPlayerSum(i);
   }
 
@@ -274,8 +267,7 @@ let i = 7;
 
 hitButton.addEventListener("click", () => {
   addWidth(i);
-  rotateCards(i);
-  addCardImgs(i);
+  rotateAndAddImage(i);
   moveCardLeft(6);
   moveCardLeft(i);
   convertPlayerSum(i);
@@ -287,7 +279,7 @@ hitButton.addEventListener("click", () => {
     hideHitButton();
     hideStayButton();
     setTimeout(dealerCardHit, 400);
-    setTimeout(evaluateHands, 1100);
+    setTimeout(evaluateHands, 1400);
   }
 });
 
@@ -299,7 +291,7 @@ stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
   setTimeout(dealerCardHit, 400);
-  setTimeout(evaluateHands, 1100);
+  setTimeout(evaluateHands, 1400);
 });
 
 // ************************************************** //

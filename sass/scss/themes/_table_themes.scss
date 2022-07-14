@@ -73,7 +73,6 @@
           transform-style: preserve-3d;
           @include transit4;
           @include borderFive;
-          // border: 1px solid $color-yellow;
 
           @include tabletPortrait {
             & {
@@ -85,12 +84,13 @@
           .card-back {
             @include keep-it-hundo;
             @include absol-topLeftZero;
-            @include transit4;
+            @include transit6;
             @include borderFive;
             overflow: hidden;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             transition-delay: 0.3s;
+            box-shadow: -0.5rem 0rem 0.5rem rgba(0, 0, 0, 0.61);
 
             .card-imgs {
               @include keep-it-hundo;
