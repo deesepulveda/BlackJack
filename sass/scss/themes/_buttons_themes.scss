@@ -1,0 +1,11 @@
+button {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  @include transit4;
+  @include borderFive;
+}
+
+.hit-btn {
+  margin-right: 2rem;
+}

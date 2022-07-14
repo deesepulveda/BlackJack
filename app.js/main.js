@@ -48,7 +48,7 @@ let dealerSumDeck = [];
 // Convert Strings to Numbers //
 // ************************************************** //
 
-//Convert Str to Num then Push into Array
+// Convert Str to Num then Push into Array
 const convertStr = (str) => {
   // If NaN Equals Ace
   if (isNaN(str)) {
@@ -137,18 +137,51 @@ const addWidth = (cardIndex) => {
 };
 
 const convertDealerSum = (valueIndex) => {
-  dealerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
-  dealerSumCount(convertStr(shuffledDeck[valueIndex]));
+  let x = 11;
+
+  if (convertStr(shuffledDeck[valueIndex]) == x && dealerSumDeck.length >= 2) {
+    let newAceValue = x;
+    newAceValue = 1;
+    dealerSumDeck.push(newAceValue);
+    dealerSumCount(newAceValue);
+  } else {
+    dealerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
+    dealerSumCount(convertStr(shuffledDeck[valueIndex]));
+  }
 };
 
 const convertPlayerSum = (valueIndex) => {
-  playerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
-  playerSumCount(convertStr(shuffledDeck[valueIndex]));
+  let x = 11;
+
+  if (convertStr(shuffledDeck[valueIndex]) == x && playerSumDeck.length >= 2) {
+    let newAceValue = x;
+    newAceValue = 1;
+    playerSumDeck.push(newAceValue);
+    playerSumCount(newAceValue);
+  } else {
+    playerSumDeck.push(convertStr(shuffledDeck[valueIndex]));
+    playerSumCount(convertStr(shuffledDeck[valueIndex]));
+  }
+};
+
+const changeItemValue = () => {
+  const indexOfAce = playerSumDeck.indexOf(11);
+  const indexOfAceDealer = dealerSumDeck.indexOf(11);
+
+  if (indexOfAce !== -1) {
+    playerSumDeck[indexOfAce] = 1;
+    playerSumCount(playerSumDeck[indexOfAce] - 11);
+  }
+
+  if (indexOfAceDealer !== -1) {
+    dealerSumDeck[indexOfAceDealer] = 1;
+    dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
+  }
 };
 
 const dealerHitAgain = () => {
   for (let n = 2; n < 5; n++) {
-    if (sumDealerValueTotal <= 17) {
+    if (sumDealerValueTotal <= 16) {
       addWidth(n);
       convertDealerSum(n);
       rotateAndAddImage(n);
@@ -161,9 +194,7 @@ const dealerCardHit = () => {
   addWidth(0);
   convertDealerSum(0);
   rotateAndAddImage(0);
-  moveCardLeft(0);
   moveCardLeft(1);
-
   setTimeout(dealerHitAgain, 600);
 };
 
@@ -271,7 +302,10 @@ hitButton.addEventListener("click", () => {
   moveCardLeft(6);
   moveCardLeft(i);
   convertPlayerSum(i);
+
   i++;
+
+  changeItemValue();
 
   blackJackorBust(sumValueTotal);
 
