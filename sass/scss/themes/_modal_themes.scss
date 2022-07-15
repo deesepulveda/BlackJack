@@ -2,23 +2,24 @@
   display: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.692);
+  background-color: rgba(0, 0, 0, 0.781);
   position: relative;
   overflow: hidden;
   @include absol-topLeftZero;
 
   .modal-value {
     width: 100%;
-    height: calc((100% / 2) - 5rem);
+    height: calc((100% / 3) - 5rem);
     margin-top: 10rem;
-    font-size: 3rem;
+    font-size: 4rem;
     color: $color-yellow;
     @include flex-center;
+    @include text-shadow;
   }
 
   .refresh-btn {
     font-size: 2rem;
-    margin-bottom: 15rem;
+    margin-bottom: 10rem;
     padding: 1rem 2rem;
     @include transit6;
     @include absol-bottomCenter;

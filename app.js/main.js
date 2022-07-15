@@ -13,9 +13,11 @@ const cardImgsBack = document.querySelectorAll(".card-imgs-back");
 const dealButton = document.querySelector(".deal-btn");
 const hitButton = document.querySelector(".hit-btn");
 const stayButton = document.querySelector(".stay-btn");
+const splitButton = document.querySelector(".split-btn");
 const modal = document.querySelector(".modal");
 const modalValue = document.querySelector(".modal-value");
 const refreshButton = document.querySelector(".refresh-btn");
+const blackjack = document.querySelector(".blackjack");
 
 // ************************************************** //
 // Create Deck of Cards //
@@ -120,6 +122,14 @@ const hideStayButton = () => {
   stayButton.classList.add("hidden");
 };
 
+const addSplitButton = () => {
+  splitButton.classList.remove("hidden");
+};
+
+const hideSplitButton = () => {
+  splitButton.classList.add("hidden");
+};
+
 const rotateAndAddImage = (cardIndex) => {
   cardFront[cardIndex].classList.add("rotateFrontCard");
   cardBack[cardIndex].classList.add("rotateBackCard");
@@ -136,6 +146,7 @@ const addWidth = (cardIndex) => {
   cards[cardIndex].classList.add("widthOpen");
 };
 
+// Check Ace if 11 or 1 and Sum up Cards for Dealer
 const convertDealerSum = (valueIndex) => {
   let x = 11;
 
@@ -150,6 +161,7 @@ const convertDealerSum = (valueIndex) => {
   }
 };
 
+// Check Ace if 11 or 1 and Sum up Cards for Player
 const convertPlayerSum = (valueIndex) => {
   let x = 11;
 
@@ -164,21 +176,23 @@ const convertPlayerSum = (valueIndex) => {
   }
 };
 
-const changeItemValue = () => {
-  const indexOfAce = playerSumDeck.indexOf(11);
-
-  if (indexOfAce !== -1) {
-    playerSumDeck[indexOfAce] = 1;
-    playerSumCount(playerSumDeck[indexOfAce] - 11);
-  }
-};
-
+// Convert Ace Values to 1 for Dealer
 const changeItemValueDealer = () => {
   const indexOfAceDealer = dealerSumDeck.indexOf(11);
 
   if (indexOfAceDealer !== -1) {
     dealerSumDeck[indexOfAceDealer] = 1;
     dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
+  }
+};
+
+// Convert Ace Values to 1 for Player
+const changeItemValue = () => {
+  const indexOfAce = playerSumDeck.indexOf(11);
+
+  if (indexOfAce !== -1) {
+    playerSumDeck[indexOfAce] = 1;
+    playerSumCount(playerSumDeck[indexOfAce] - 11);
   }
 };
 
@@ -210,14 +224,26 @@ const dealerCardHit = () => {
 const blackJackorBust = (val) => {
   if (val === 21 || val > 21) {
     hideHitButton();
+    hideSplitButton();
     hideStayButton();
     setTimeout(dealerCardHit, 400);
     setTimeout(evaluateHands, 1100);
   }
 };
 
+const splitValue = (val1, val2) => {
+  if (val1 === val2) {
+    addSplitButton();
+  }
+};
+
 const evaluateHands = () => {
   modal.classList.add("showModal");
+
+  if (sumValueTotal == 21 && playerSumDeck.length == 2) {
+    blackjack.textContent = "BLACKJACK!";
+    modalValue.textContent = "Player Wins!";
+  }
 
   if (
     (sumValueTotal > sumDealerValueTotal && sumValueTotal < 22) ||
@@ -280,8 +306,6 @@ const shuffleNow = () => {
 
   // If Player Hits Sum of 21 or Bust
   blackJackorBust(sumValueTotal);
-
-  // console.log(shuffledDeck);
 };
 
 // ************************************************** //
@@ -293,6 +317,7 @@ dealButton.addEventListener("click", () => {
   hideDealButton();
   hitButton.classList.remove("hidden");
   stayButton.classList.remove("hidden");
+  splitValue(shuffledDeck[5].slice(1), shuffledDeck[6].slice(1));
 });
 
 // ************************************************** //
@@ -329,6 +354,7 @@ hitButton.addEventListener("click", () => {
 stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
+  hideSplitButton();
   setTimeout(dealerCardHit, 400);
   setTimeout(evaluateHands, 1400);
 });
@@ -341,3 +367,16 @@ refreshButton.addEventListener("click", () => {
   modal.classList.remove("showModal");
   window.location.reload();
 });
+
+// ************************************************** //
+// Confetti Winnding Function //
+// ************************************************** //
+
+// Create Different size/color confetti
+// Create Different Speed
+// Create Different Duration
+// Create Different Positions
+
+// ************************************************** //
+// Chips Betting Function //
+// ************************************************** //

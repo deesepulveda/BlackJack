@@ -107,7 +107,7 @@ body {
   display: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.692);
+  background-color: rgba(0, 0, 0, 0.781);
   position: relative;
   overflow: hidden;
   position: absolute;
@@ -115,16 +115,17 @@ body {
   left: 0; }
   .modal .modal-value {
     width: 100%;
-    height: calc((100% / 2) - 5rem);
+    height: calc((100% / 3) - 5rem);
     margin-top: 10rem;
-    font-size: 3rem;
+    font-size: 4rem;
     color: #f7f708;
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    text-shadow: 0.2rem 0.2rem 0.3rem #050505; }
   .modal .refresh-btn {
     font-size: 2rem;
-    margin-bottom: 15rem;
+    margin-bottom: 10rem;
     padding: 1rem 2rem;
     transition: 0.6s ease;
     -webkit-transition: 0.6s ease;
@@ -235,9 +236,10 @@ button {
   -ms-border-radius: 5%;
   -o-border-radius: 5%; }
 
-.hit-btn {
+.hit-btn,
+.split-btn {
   margin-right: 2rem; }
 
-.blackjack-animation {
-  font-size: 3rem;
+.blackjack {
+  font-size: 5rem;
   color: #f7f708; }

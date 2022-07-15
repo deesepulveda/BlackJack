@@ -6,6 +6,7 @@ button {
   @include borderFive;
 }
 
-.hit-btn {
+.hit-btn,
+.split-btn {
   margin-right: 2rem;
 }
