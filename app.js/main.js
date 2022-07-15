@@ -139,7 +139,7 @@ const addWidth = (cardIndex) => {
 const convertDealerSum = (valueIndex) => {
   let x = 11;
 
-  if (convertStr(shuffledDeck[valueIndex]) == x && dealerSumDeck.length >= 2) {
+  if (convertStr(shuffledDeck[valueIndex]) == x && dealerSumDeck.length > 2) {
     let newAceValue = x;
     newAceValue = 1;
     dealerSumDeck.push(newAceValue);
@@ -153,7 +153,7 @@ const convertDealerSum = (valueIndex) => {
 const convertPlayerSum = (valueIndex) => {
   let x = 11;
 
-  if (convertStr(shuffledDeck[valueIndex]) == x && playerSumDeck.length >= 2) {
+  if (convertStr(shuffledDeck[valueIndex]) == x && playerSumDeck.length > 2) {
     let newAceValue = x;
     newAceValue = 1;
     playerSumDeck.push(newAceValue);
@@ -166,16 +166,19 @@ const convertPlayerSum = (valueIndex) => {
 
 const changeItemValue = () => {
   const indexOfAce = playerSumDeck.indexOf(11);
-  const indexOfAceDealer = dealerSumDeck.indexOf(11);
 
   if (indexOfAce !== -1) {
-    if (indexOfAceDealer !== -1) {
-      dealerSumDeck[indexOfAce] = 1;
-      dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
-    }
-
     playerSumDeck[indexOfAce] = 1;
     playerSumCount(playerSumDeck[indexOfAce] - 11);
+  }
+};
+
+const changeItemValueDealer = () => {
+  const indexOfAceDealer = dealerSumDeck.indexOf(11);
+
+  if (indexOfAceDealer !== -1) {
+    dealerSumDeck[indexOfAceDealer] = 1;
+    dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
   }
 };
 
@@ -186,6 +189,7 @@ const dealerHitAgain = () => {
       convertDealerSum(n);
       rotateAndAddImage(n);
       moveCardLeft(n);
+      changeItemValueDealer();
     }
   }
 };
@@ -195,6 +199,7 @@ const dealerCardHit = () => {
   convertDealerSum(0);
   rotateAndAddImage(0);
   moveCardLeft(1);
+  changeItemValueDealer();
   setTimeout(dealerHitAgain, 600);
 };
 
@@ -324,7 +329,6 @@ hitButton.addEventListener("click", () => {
 stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
-  changeItemValue();
   setTimeout(dealerCardHit, 400);
   setTimeout(evaluateHands, 1400);
 });
