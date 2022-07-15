@@ -169,13 +169,13 @@ const changeItemValue = () => {
   const indexOfAceDealer = dealerSumDeck.indexOf(11);
 
   if (indexOfAce !== -1) {
+    if (indexOfAceDealer !== -1) {
+      dealerSumDeck[indexOfAce] = 1;
+      dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
+    }
+
     playerSumDeck[indexOfAce] = 1;
     playerSumCount(playerSumDeck[indexOfAce] - 11);
-  }
-
-  if (indexOfAceDealer !== -1) {
-    dealerSumDeck[indexOfAceDealer] = 1;
-    dealerSumCount(dealerSumDeck[indexOfAceDealer] - 11);
   }
 };
 
@@ -324,6 +324,7 @@ hitButton.addEventListener("click", () => {
 stayButton.addEventListener("click", () => {
   hideHitButton();
   hideStayButton();
+  changeItemValue();
   setTimeout(dealerCardHit, 400);
   setTimeout(evaluateHands, 1400);
 });
