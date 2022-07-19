@@ -18,6 +18,9 @@ const modal = document.querySelector(".modal");
 const modalValue = document.querySelector(".modal-value");
 const refreshButton = document.querySelector(".refresh-btn");
 const blackjack = document.querySelector(".blackjack");
+const splitContainer = document.querySelector(".split-container");
+const splitSectionOne = document.querySelector(".split-section-one");
+const splitSectionTwo = document.querySelector(".split-section-two");
 
 // ************************************************** //
 // Create Deck of Cards //
@@ -45,6 +48,12 @@ let playerSumDeck = [];
 
 // Create Sum of Dealers's Flopped/Open Cards
 let dealerSumDeck = [];
+
+// Create Sum of Player's Flopped/Open Cards
+let splitSumDeckOne = [];
+
+// Create Sum of Dealers's Flopped/Open Cards
+let splitSumDeckTwo = [];
 
 // ************************************************** //
 // Convert Strings to Numbers //
@@ -231,10 +240,18 @@ const blackJackorBust = (val) => {
   }
 };
 
+// Evaluate for Split Function
 const splitValue = (val1, val2) => {
   if (val1 === val2) {
     addSplitButton();
   }
+};
+
+// Split Hands UI
+const splitHandsUI = () => {
+  splitSectionOne.appendChild(cards[5]);
+  splitSectionTwo.appendChild(cards[6]);
+  cards[6].classList.remove("moveLeft");
 };
 
 const evaluateHands = () => {
@@ -327,6 +344,17 @@ dealButton.addEventListener("click", () => {
 let i = 7;
 
 hitButton.addEventListener("click", () => {
+  if (!splitContainer.classList.contains("hidden")) {
+    console.log("CHECKING SPLIT");
+
+    if (i === 15) {
+      hideHitButton();
+      hideStayButton();
+      setTimeout(dealerCardHit, 400);
+      setTimeout(evaluateHands, 1400);
+    }
+  }
+
   addWidth(i);
   rotateAndAddImage(i);
   moveCardLeft(6);
@@ -345,6 +373,16 @@ hitButton.addEventListener("click", () => {
     setTimeout(dealerCardHit, 400);
     setTimeout(evaluateHands, 1400);
   }
+});
+
+// ************************************************** //
+// Split Button Function //
+// ************************************************** //
+
+splitButton.addEventListener("click", () => {
+  splitContainer.classList.remove("hidden");
+  splitHandsUI();
+  hideSplitButton();
 });
 
 // ************************************************** //
@@ -367,15 +405,6 @@ refreshButton.addEventListener("click", () => {
   modal.classList.remove("showModal");
   window.location.reload();
 });
-
-// ************************************************** //
-// Confetti Winnding Function //
-// ************************************************** //
-
-// Create Different size/color confetti
-// Create Different Speed
-// Create Different Duration
-// Create Different Positions
 
 // ************************************************** //
 // Chips Betting Function //

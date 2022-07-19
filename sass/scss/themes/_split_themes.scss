@@ -1,0 +1,30 @@
+.split-container {
+  display: none;
+  @include keep-it-hundo;
+  @include absol-topLeftZero;
+  @include flex-center;
+
+  .split-box {
+    @include keep-it-hundo;
+    @include flex-center-col;
+
+    .split-card-value {
+      width: 100%;
+      height: 3.5rem;
+      font-size: 3rem;
+      color: $color-yellow;
+    }
+
+    .splits {
+      width: calc(100% / 2);
+      height: 100%;
+      @include flex-center;
+    }
+  }
+}
+
+// ********** JS Class ********** //
+
+.hidden {
+  display: none;
+}
