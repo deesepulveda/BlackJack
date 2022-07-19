@@ -4,11 +4,8 @@
   "description": "Black Jack Casino Game Project",
   "main": "app.js",
   "scripts": {
-    "compile:sass": "node-sass sass/scss/styles.scss css/styles.css -w"
+    "sass--watch": "sass sass/scss/styles.scss:css/styles.css -w "
   },
   "author": "Dee Sepulveda",
-  "license": "ISC",
-  "devDependencies": {
-    "node-sass": "^7.0.1"
-  }
+  "license": "ISC"
 }

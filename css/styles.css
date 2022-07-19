@@ -4,12 +4,13 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 html {
-  font-size: 62.5%;
-  /*Equivalent to 10px*/
-  scroll-behavior: smooth; }
+  font-size: 62.5%; /*Equivalent to 10px*/
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -18,7 +19,8 @@ body {
   text-align: center;
   text-transform: uppercase;
   font-family: "BebasNeue", sans-serif;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+}
 
 .table {
   width: 100vw;
@@ -29,68 +31,80 @@ body {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.727); }
-  .table::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url(../public/images/CasinoBGPatternRed.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1; }
-  .table .table-container {
-    width: 100%;
-    height: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-end;
-    border: 1ox solid yellow; }
-    .table .table-container .wrappers {
-      width: 100%;
-      height: auto;
-      position: relative;
-      overflow: hidden; }
-      .table .table-container .wrappers:not(:last-of-type) {
-        height: 40%; }
-      .table .table-container .wrappers:first-of-type {
-        margin-top: 2rem; }
-      .table .table-container .wrappers:last-of-type {
-        height: 20%;
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-      .table .table-container .wrappers .section-wrapper-title {
-        width: 100%;
-        margin-top: 1rem;
-        color: #fff; }
-      .table .table-container .wrappers .card-value {
-        width: 100%;
-        height: 3.5rem;
-        font-size: 3rem;
-        color: #f7f708; }
-      .table .table-container .wrappers .dealer-card-container,
-      .table .table-container .wrappers .player-card-container {
-        width: 90%;
-        height: auto;
-        margin: 1rem auto;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center; }
+  background-color: rgba(0, 0, 0, 0.727);
+}
+.table::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../public/images/CasinoBGPatternRed.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+.table .table-container {
+  width: 100%;
+  height: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1ox solid yellow;
+}
+.table .table-container .wrappers {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+.table .table-container .wrappers:not(:last-of-type) {
+  height: 40%;
+}
+.table .table-container .wrappers:first-of-type {
+  margin-top: 2rem;
+}
+.table .table-container .wrappers:last-of-type {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table .table-container .wrappers .section-wrapper-title {
+  width: 100%;
+  margin-top: 1rem;
+  color: #fff;
+}
+.table .table-container .wrappers .card-value {
+  width: 100%;
+  height: 3.5rem;
+  font-size: 3rem;
+  color: rgb(247, 247, 8);
+}
+.table .table-container .wrappers .dealer-card-container,
+.table .table-container .wrappers .player-card-container {
+  width: 90%;
+  height: auto;
+  margin: 1rem auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
 
 .moveLeft {
-  margin-left: -5rem; }
+  margin-left: -5rem;
+}
 
 .cardsHidden {
   position: absolute;
@@ -100,10 +114,12 @@ body {
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%); }
+  -o-transform: translateX(-50%);
+}
 
 .widthOpen {
-  width: 100px; }
+  width: 100px;
+}
 
 .modal {
   display: none;
@@ -114,38 +130,42 @@ body {
   overflow: hidden;
   position: absolute;
   top: 0;
-  left: 0; }
-  .modal .modal-value {
-    width: 100%;
-    height: calc((100% / 3) - 5rem);
-    margin-top: 10rem;
-    font-size: 4rem;
-    color: #f7f708;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0.2rem 0.2rem 0.3rem #050505; }
-  .modal .refresh-btn {
-    font-size: 2rem;
-    margin-bottom: 10rem;
-    padding: 1rem 2rem;
-    transition: 0.6s ease;
-    -webkit-transition: 0.6s ease;
-    -moz-transition: 0.6s ease;
-    -ms-transition: 0.6s ease;
-    -o-transition: 0.6s ease;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    cursor: pointer; }
+  left: 0;
+}
+.modal .modal-value {
+  width: 100%;
+  height: calc(33.3333333333% - 5rem);
+  margin-top: 10rem;
+  font-size: 4rem;
+  color: rgb(247, 247, 8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.2rem 0.2rem 0.3rem #050505;
+}
+.modal .refresh-btn {
+  font-size: 2rem;
+  margin-bottom: 10rem;
+  padding: 1rem 2rem;
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+  -moz-transition: 0.6s ease;
+  -ms-transition: 0.6s ease;
+  -o-transition: 0.6s ease;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  cursor: pointer;
+}
 
 .showModal {
-  display: block; }
+  display: block;
+}
 
 .cards {
   width: 0;
@@ -161,67 +181,79 @@ body {
   -webkit-border-radius: 5%;
   -moz-border-radius: 5%;
   -ms-border-radius: 5%;
-  -o-border-radius: 5%; }
-  @media only screen and (min-width: 768px) {
-    .cards {
-      height: 200px; } }
-  .cards .card-front,
-  .cards .card-back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 0.6s ease;
-    -webkit-transition: 0.6s ease;
-    -moz-transition: 0.6s ease;
-    -ms-transition: 0.6s ease;
-    -o-transition: 0.6s ease;
-    border-radius: 5%;
-    -webkit-border-radius: 5%;
-    -moz-border-radius: 5%;
-    -ms-border-radius: 5%;
-    -o-border-radius: 5%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transition-delay: 0.3s;
-    box-shadow: -0.5rem 0rem 0.5rem rgba(0, 0, 0, 0.61); }
-    .cards .card-front .card-imgs,
-    .cards .card-back .card-imgs {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; }
-  .cards .card-front {
-    transform: perspective(50rem) rotateY(0deg);
-    -webkit-transform: perspective(50rem) rotateY(0deg);
-    -moz-transform: perspective(50rem) rotateY(0deg);
-    -ms-transform: perspective(50rem) rotateY(0deg);
-    -o-transform: perspective(50rem) rotateY(0deg); }
-  .cards .card-back {
-    transform: perspective(60rem) rotateY(180deg);
-    -webkit-transform: perspective(60rem) rotateY(180deg);
-    -moz-transform: perspective(60rem) rotateY(180deg);
-    -ms-transform: perspective(60rem) rotateY(180deg);
-    -o-transform: perspective(60rem) rotateY(180deg); }
-  .cards .rotateFrontCard {
-    transform: perspective(50rem) rotateY(180deg);
-    -webkit-transform: perspective(50rem) rotateY(180deg);
-    -moz-transform: perspective(50rem) rotateY(180deg);
-    -ms-transform: perspective(50rem) rotateY(180deg);
-    -o-transform: perspective(50rem) rotateY(180deg); }
-  .cards .rotateBackCard {
-    transform: perspective(50rem) rotateY(0deg);
-    -webkit-transform: perspective(50rem) rotateY(0deg);
-    -moz-transform: perspective(50rem) rotateY(0deg);
-    -ms-transform: perspective(50rem) rotateY(0deg);
-    -o-transform: perspective(50rem) rotateY(0deg); }
+  -o-border-radius: 5%;
+}
+@media only screen and (min-width: 768px) {
+  .cards {
+    height: 200px;
+  }
+}
+.cards .card-front,
+.cards .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+  -moz-transition: 0.6s ease;
+  -ms-transition: 0.6s ease;
+  -o-transition: 0.6s ease;
+  border-radius: 5%;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  -ms-border-radius: 5%;
+  -o-border-radius: 5%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition-delay: 0.3s;
+  box-shadow: -0.5rem 0rem 0.5rem rgba(0, 0, 0, 0.61);
+}
+.cards .card-front .card-imgs,
+.cards .card-back .card-imgs {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cards .card-front {
+  transform: perspective(50rem) rotateY(0deg);
+  -webkit-transform: perspective(50rem) rotateY(0deg);
+  -moz-transform: perspective(50rem) rotateY(0deg);
+  -ms-transform: perspective(50rem) rotateY(0deg);
+  -o-transform: perspective(50rem) rotateY(0deg);
+}
+.cards .card-back {
+  transform: perspective(60rem) rotateY(180deg);
+  -webkit-transform: perspective(60rem) rotateY(180deg);
+  -moz-transform: perspective(60rem) rotateY(180deg);
+  -ms-transform: perspective(60rem) rotateY(180deg);
+  -o-transform: perspective(60rem) rotateY(180deg);
+}
+.cards .rotateFrontCard {
+  transform: perspective(50rem) rotateY(180deg);
+  -webkit-transform: perspective(50rem) rotateY(180deg);
+  -moz-transform: perspective(50rem) rotateY(180deg);
+  -ms-transform: perspective(50rem) rotateY(180deg);
+  -o-transform: perspective(50rem) rotateY(180deg);
+}
+.cards .rotateBackCard {
+  transform: perspective(50rem) rotateY(0deg);
+  -webkit-transform: perspective(50rem) rotateY(0deg);
+  -moz-transform: perspective(50rem) rotateY(0deg);
+  -ms-transform: perspective(50rem) rotateY(0deg);
+  -o-transform: perspective(50rem) rotateY(0deg);
+}
 
 .widthOpen {
-  width: 100px; }
-  @media only screen and (min-width: 768px) {
-    .widthOpen {
-      width: 140px; } }
+  width: 100px;
+}
+@media only screen and (min-width: 768px) {
+  .widthOpen {
+    width: 140px;
+  }
+}
 
 button {
   font-size: 2rem;
@@ -236,15 +268,18 @@ button {
   -webkit-border-radius: 5%;
   -moz-border-radius: 5%;
   -ms-border-radius: 5%;
-  -o-border-radius: 5%; }
+  -o-border-radius: 5%;
+}
 
 .hit-btn,
 .split-btn {
-  margin-right: 2rem; }
+  margin-right: 2rem;
+}
 
 .blackjack {
   font-size: 5rem;
-  color: #f7f708; }
+  color: rgb(247, 247, 8);
+}
 
 .split-container {
   display: none;
@@ -255,25 +290,32 @@ button {
   left: 0;
   display: flex;
   justify-content: center;
-  align-items: center; }
-  .split-container .split-box {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; }
-    .split-container .split-box .split-card-value {
-      width: 100%;
-      height: 3.5rem;
-      font-size: 3rem;
-      color: #f7f708; }
-    .split-container .split-box .splits {
-      width: calc(100% / 2);
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
+  align-items: center;
+}
+.split-container .split-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.split-container .split-box .split-card-value {
+  width: 100%;
+  height: 3.5rem;
+  font-size: 3rem;
+  color: rgb(247, 247, 8);
+}
+.split-container .split-box .splits {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
+
+/*# sourceMappingURL=styles.css.map */
